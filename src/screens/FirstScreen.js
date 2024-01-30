@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
 import Swiper from "react-native-swiper";
 
 function IntroductionSlide() {
@@ -24,36 +30,43 @@ function IntroductionSlide() {
   );
 }
 
-export default function HomeScreen({navigation}) {
+export default function FirstScreen({ navigation }) {
   return (
-    
-    <View style={styles.container}>
-    
-      {/* Slide giới thiệu ứng dụng */}
-      <IntroductionSlide />
+    <ImageBackground style={{height:'100%', width:'100%'}} source={require('../img/image_background.webp')} resizeMode='stretch'>
+      <View style={styles.container}>
+        {/* Slide giới thiệu ứng dụng */}
+        <IntroductionSlide />
 
-      {/* Phần nút Đăng nhập */}
-      <TouchableOpacity onPress={()=>navigation.navigate('LoginScreen')} style={styles.login}>
-        <View>
-          <Text style={{ fontSize: 20, color: "white" }}>Đăng nhập</Text>
-        </View>
-      </TouchableOpacity>
+        {/* Phần nút Đăng nhập */}
+        <TouchableOpacity
+          onPress={() => navigation.navigate("LoginScreen")}
+          style={styles.login}
+        >
+          <View>
+            <Text style={{ fontSize: 20, color: "white" }}>Đăng nhập</Text>
+          </View>
+        </TouchableOpacity>
 
-      {/* Phần nút Đăng ký */}
-      <TouchableOpacity onPress={()=>navigation.navigate('dangky')} style={styles.signup}>
-        <View>
-          <Text style={{ fontSize: 20, color: "black" }}>Đăng ký</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
+        {/* Phần nút Đăng ký */}
+        <TouchableOpacity
+          onPress={() => navigation.navigate("dangky")}
+          style={styles.signup}
+        >
+          <View>
+            <Text style={{ fontSize: 20, color: "black" }}>Đăng ký</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
+    width:'100%',
+    height:'100%',
     justifyContent: "flex-end", // Đưa nội dung xuống cuối màn hình
     paddingBottom: 50, // Khoảng cách bottom với cuối màn hình
   },
@@ -97,5 +110,3 @@ const styles = StyleSheet.create({
     top: 5,
   },
 });
-
-

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { ArrowLeft } from 'react-native-feather';
 import FirstScreen from "./FirstScreen.js";
-
+import HomeScreen from './HomeScreen.js';
 function LoginScreen({navigation}) {
     const handleBackButton = () => {
         navigation.goBack();
@@ -46,7 +46,9 @@ function LoginScreen({navigation}) {
       </TouchableOpacity>
 
       {/* Nút Đăng nhập */}
-      <TouchableOpacity style={styles.loginButton}>
+      <TouchableOpacity 
+      onPress={()=>navigation.navigate('HomeScreen')}
+      style={styles.loginButton}>
         <Text style={styles.loginButtonText}>Đăng nhập</Text>
       </TouchableOpacity>
     
