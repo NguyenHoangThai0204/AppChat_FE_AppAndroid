@@ -40,7 +40,7 @@ export default function HomeScreen({navigation}) {
       </TouchableOpacity>
 
       {/* Phần nút Đăng ký */}
-      <TouchableOpacity style={styles.signup}>
+      <TouchableOpacity onPress={()=>navigation.navigate('dangky')} style={styles.signup}>
         <View>
           <Text style={{ fontSize: 20, color: "black" }}>Đăng ký</Text>
         </View>
