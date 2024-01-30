@@ -5,20 +5,22 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  ImageBackground,
 } from "react-native";
 import { ArrowLeft } from 'react-native-feather';
-import BackButton from "../components/BackButton";
+import HomeScreen from "../screens/HomeScreen.js";
 
-function LoginScreen(navigation) {
+function LoginScreen({navigation}) {
     const handleBackButton = () => {
         navigation.goBack();
       };
   return (
     <View style={styles.container}>
+
       {/* Header */}
       <View style={styles.header}>
        {/* Nút quay lại */}
-       <TouchableOpacity onPress={handleBackButton}>
+       <TouchableOpacity style={styles.buttonBack} onPress={()=>navigation.navigate('HomeScreen')}>
           <ArrowLeft color="white" size={24} style={{marginLeft:10}} />
         </TouchableOpacity>
         <Text style={styles.headerText}>Đăng nhập</Text>
@@ -47,6 +49,9 @@ function LoginScreen(navigation) {
       <TouchableOpacity style={styles.loginButton}>
         <Text style={styles.loginButtonText}>Đăng nhập</Text>
       </TouchableOpacity>
+    
+      
+      
     </View>
   );
 }

@@ -24,9 +24,11 @@ function IntroductionSlide() {
   );
 }
 
-function OpenScreen({navigation}) {
+export default function HomeScreen({navigation}) {
   return (
+    
     <View style={styles.container}>
+    
       {/* Slide giới thiệu ứng dụng */}
       <IntroductionSlide />
 
@@ -96,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OpenScreen;
+
