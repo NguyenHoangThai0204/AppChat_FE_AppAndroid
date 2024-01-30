@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from './src/screens/HomeScreen';
 import LoginScreen from './src/screens/LoginScreen';
+import phone from './src/screens/Phone';
+import dangky from './src/screens/Signup'
 
 const Stack = createNativeStackNavigator();
 
@@ -14,6 +16,8 @@ export default function App() {
       <Stack.Navigator>
           <Stack.Screen options={{headerShown:false}} name='HomeScreen' component={HomeScreen}/>
          <Stack.Screen options={{headerShown:false}} name='LoginScreen' component={LoginScreen}/>
+         <Stack.Screen  options={{headerTitle:'Tạo Tài Khoản',headerTitleAlign:'center',headerStyle:{backgroundColor:'#0099FF'}}} name='dangky' component={dangky}/>
+         <Stack.Screen   options={{headerTitle:'Tạo Tài Khoản',headerTitleAlign:'center',headerStyle:{backgroundColor:'#0099FF'}}} name='phone' component={phone}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
