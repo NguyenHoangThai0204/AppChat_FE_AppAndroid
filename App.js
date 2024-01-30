@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import HomeScreen from './src/screens/HomeScreen';
+import HomeScreen from './src/screens/SignInScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import phone from './src/screens/PhoneScreen';
 import dangky from './src/screens/SignupScreen'

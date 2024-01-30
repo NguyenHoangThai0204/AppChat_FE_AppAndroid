@@ -8,7 +8,7 @@ import {
   ImageBackground,
 } from "react-native";
 import { ArrowLeft } from 'react-native-feather';
-import HomeScreen from "../screens/HomeScreen.js";
+import HomeScreen from "./SignInScreen.js";
 
 function LoginScreen({navigation}) {
     const handleBackButton = () => {
