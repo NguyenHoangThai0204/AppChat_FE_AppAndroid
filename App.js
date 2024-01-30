@@ -5,8 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from './src/screens/HomeScreen';
 import LoginScreen from './src/screens/LoginScreen';
-import phone from './src/screens/Phone';
-import dangky from './src/screens/Signup'
+import phone from './src/screens/PhoneScreen';
+import dangky from './src/screens/SignupScreen'
 
 const Stack = createNativeStackNavigator();
 

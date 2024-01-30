@@ -1,7 +1,7 @@
 import { Button, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 
-function phone(){
+export default function phone(){
 return(
   <View style={styles.container}>
       
@@ -48,4 +48,4 @@ const styles =  StyleSheet.create({
    
   })
 
-  export default phone
+  
