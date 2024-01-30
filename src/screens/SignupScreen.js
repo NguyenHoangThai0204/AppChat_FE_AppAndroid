@@ -2,7 +2,7 @@ import { Button, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View 
 
 
 // form nhap ten
-function dangky({navigation}){
+export default function dangky({navigation}){
     return(
       <View style={styles.container}>
       
@@ -24,7 +24,7 @@ function dangky({navigation}){
 
 
 
-  export default dangky
+
   const styles =  StyleSheet.create({
     container: {
       flex: 1,
