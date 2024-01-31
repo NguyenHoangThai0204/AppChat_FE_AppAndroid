@@ -8,7 +8,9 @@ import {
   ImageBackground,
 } from "react-native";
 import { ArrowLeft } from 'react-native-feather';
-import HomeScreen from "../screens/HomeScreen.js";
+import FirstScreen from "./FirstScreen.js";
+import HomeScreen from './HomeScreen.js';
+import MessageScreen from "./MessageScreen.js";
 
 function LoginScreen({navigation}) {
     const handleBackButton = () => {
@@ -16,11 +18,11 @@ function LoginScreen({navigation}) {
       };
   return (
     <View style={styles.container}>
-
+    
       {/* Header */}
       <View style={styles.header}>
        {/* Nút quay lại */}
-       <TouchableOpacity style={styles.buttonBack} onPress={()=>navigation.navigate('HomeScreen')}>
+       <TouchableOpacity style={styles.buttonBack} onPress={()=>navigation.navigate('FirstScreen')}>
           <ArrowLeft color="white" size={24} style={{marginLeft:10}} />
         </TouchableOpacity>
         <Text style={styles.headerText}>Đăng nhập</Text>
@@ -46,11 +48,11 @@ function LoginScreen({navigation}) {
       </TouchableOpacity>
 
       {/* Nút Đăng nhập */}
-      <TouchableOpacity style={styles.loginButton}>
+      <TouchableOpacity 
+      onPress={()=>navigation.navigate('HomeScreen')}
+      style={styles.loginButton}>
         <Text style={styles.loginButtonText}>Đăng nhập</Text>
       </TouchableOpacity>
-    
-      
       
     </View>
   );
