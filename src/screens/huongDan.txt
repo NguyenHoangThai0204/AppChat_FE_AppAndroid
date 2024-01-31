@@ -1,2 +1,6 @@
 yarn add @react-navigation/bottom-tabs
+
 npm install react-native-svg
+
+yarn add react-icons
+
