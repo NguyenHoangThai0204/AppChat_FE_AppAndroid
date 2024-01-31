@@ -6,7 +6,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import MessageScreen from "./MessageScreen.js";
 import InformationScreen from "./InformationScreen.js";
 import { HeaderShownContext } from "@react-navigation/elements";
-
+import DiaryScreen from "./DiaryScreen.js";
+import DiscoverScreen from "./DiscoverScreen.js";
+import ContactScreen from "./ContactScreen.js";
 const Tab = createBottomTabNavigator();
 
 const HomeScreen = () => {
@@ -18,24 +20,24 @@ const HomeScreen = () => {
         component={MessageScreen}
       />
       <Tab.Screen
-        name="Tin nhắn"
+        name="Danh bạ"
         options={{ headerShown: false }}
-        component={MessageScreen}
+        component={ContactScreen}
       />
       <Tab.Screen
-        name="Tin nhắn"
+        name="Khám phá"
         options={{ headerShown: false }}
-        component={MessageScreen}
+        component={DiscoverScreen}
       />
       <Tab.Screen
-        name="Tin nhắn"
+        name="Nhật kí"
         options={{ headerShown: false }}
-        component={MessageScreen}
+        component={DiaryScreen}
       />
       <Tab.Screen
-        name="Tin nhắn"
+        name="Cá nhân"
         options={{ headerShown: false }}
-        component={MessageScreen}
+        component={InformationScreen}
       />
     </Tab.Navigator>
   );
