@@ -13,13 +13,12 @@ import HomeScreen from './HomeScreen.js';
 import MessageScreen from "./MessageScreen.js";
 
 function LoginScreen({navigation}) {
-  
     const handleBackButton = () => {
         navigation.goBack();
       };
   return (
     <View style={styles.container}>
-
+    
       {/* Header */}
       <View style={styles.header}>
        {/* Nút quay lại */}
@@ -50,7 +49,7 @@ function LoginScreen({navigation}) {
 
       {/* Nút Đăng nhập */}
       <TouchableOpacity 
-      onPress={()=>navigation.navigate('MessageScreen')}
+      onPress={()=>navigation.navigate('HomeScreen')}
       style={styles.loginButton}>
         <Text style={styles.loginButtonText}>Đăng nhập</Text>
       </TouchableOpacity>

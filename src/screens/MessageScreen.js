@@ -10,26 +10,24 @@ import {
 import { PiMagnifyingGlassLight } from "react-icons/pi";
 import { FaQrcode } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
+import ChatsScreen from "./ChatsScreen.js";
 
 const users = [
   { id: "1", name: "Người dùng 1", email: "user1@example.com" },
   { id: "2", name: "Người dùng 2", email: "user2@example.com" },
-
   // Thêm thông tin người dùng khác nếu cần
 ];
-export default function MessageScreen(props) {
+export default function MessageScreen({ props, navigation }) {
   // render người dùng
-  const renderItem = ({ item, index }) => (
-
-    <TouchableOpacity>
+  const renderItem = ({ item }) => (
+    <TouchableOpacity onPress={() => navigation.navigate("ChatsScreen")}>
       <View style={styles.userItem}>
-      <View style={styles.avatar}>
+        <View style={styles.avatar}></View>
+        <View style={styles.inforUser}>
+          <Text style={{ fontSize: "18px" }}>{item.name}</Text>
+          <Text style={{ fontSize: "16px" }}>{item.email}</Text>
+        </View>
       </View>
-      <View style={styles.inforUser}>
-        <Text style={{ fontSize: '18px' }}>{item.name}</Text>
-        <Text style={{ fontSize: '16px' }}>{item.email}</Text>
-      </View>
-    </View>
     </TouchableOpacity>
   );
 
@@ -47,12 +45,17 @@ export default function MessageScreen(props) {
       </View>
       {/* Phần content */}
       <View style={styles.content}>
+        {/* Phần tab */}
+        <View>
+          
+        </View>
         {/* danh sách người đang sử dụng */}
         <FlatList
           data={users}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
-          showsVerticalScrollIndicator={true} />
+          showsVerticalScrollIndicator={true}
+        />
       </View>
     </View>
   );
@@ -68,6 +71,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     backgroundColor: "rgb(0,145,255)",
+    paddingVertical: 10,
   },
   icon: {
     height: "30px",
@@ -85,20 +89,22 @@ const styles = StyleSheet.create({
 
   content: {
     flex: 1,
-  },avatar:{
-    width:'60px',
-    height:'60px',
-    padding:'15px',
-    borderRadius:50,
-    backgroundColor:'black',
-  },inforUser:{
-    marginLeft:'15px',
-    textAlign:'left',
+  },
+  avatar: {
+    width: "55px",
+    height: "55px",
+    padding: "15px",
+    borderRadius: 50,
+    backgroundColor: "black",
+  },
+  inforUser: {
+    marginLeft: "15px",
+    textAlign: "left",
   },
   userItem: {
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
-    padding: '8px',
-    flexDirection:"row",
+    padding: "8px",
+    flexDirection: "row",
   },
 });

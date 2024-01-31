@@ -4,3 +4,13 @@ npm install react-native-svg
 
 yarn add react-icons
 
+MessageScreen  màn hình chính tin nhắn
+ChatsScreen màn hình đối thoại
+
+InformationScreen màn hình cá nhân
+
+ContactScreen màn hình danh bạ
+
+DiaryScreen màn hình nhật kí
+
+DiscoverScreen màn hình khám phá
