@@ -14,3 +14,5 @@ ContactScreen màn hình danh bạ
 DiaryScreen màn hình nhật kí
 
 DiscoverScreen màn hình khám phá
+
+PersonalScreen màn hình trang cá nhân

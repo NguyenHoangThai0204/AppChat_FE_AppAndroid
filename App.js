@@ -10,8 +10,12 @@ import dangky from './src/screens/SignupScreen'
 import HomeScreen from './src/screens/HomeScreen';
 import MessageScreen from './src/screens/MessageScreen';
 import ChatsScreen from './src/screens/ChatsScreen.js'
+
+import PersonalScreen from './src/screens/PersonalScreen.js';
+
 import DiscoverScreen from './src/screens/DiscoverScreen.js';
 import DiscoverApp from './src/screens/DiscoverApp.js';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +28,7 @@ export default function App() {
          <Stack.Screen options={{headerShown:false}} name='HomeScreen' component={HomeScreen}/>
          <Stack.Screen options={{headerShown:false}} name='MessageScreen' component={MessageScreen}/>
          <Stack.Screen options={{headerShown:false}} name='ChatsScreen' component={ChatsScreen}/>
+         <Stack.Screen options={{headerShown:false}} name='PersonalScreen' component={PersonalScreen}/>
          <Stack.Screen  options={{headerTitle:'Tạo Tài Khoản',headerTitleAlign:'center',headerStyle:{backgroundColor:'#0099FF'}}} name='dangky' component={dangky}/>
          <Stack.Screen   options={{headerTitle:'Tạo Tài Khoản',headerTitleAlign:'center',headerStyle:{backgroundColor:'#0099FF'}}} name='phone' component={phone}/>
          <Stack.Screen options={{headerShown:false}} name='DiscoverScreen' component={DiscoverScreen}/>
