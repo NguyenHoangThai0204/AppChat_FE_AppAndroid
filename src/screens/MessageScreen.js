@@ -14,13 +14,17 @@ import ChatsScreen from "./ChatsScreen.js";
 
 const users = [
   { id: "1", name: "Người dùng 1", email: "user1@example.com" },
-  { id: "2", name: "Người dùng 2", email: "user2@example.com" },
+  { id: "2", name: "Thành viên Mến", email: "user2@example.com" },
+  { id: "3", name: "Nguyễn Hoàng Thái", email: "user1@example.com" },
+  { id: "4", name: "Lê Thị Ngọc Mai", email: "user2@example.com" },
+  { id: "5", name: "Nguyễn Văn Việt", email: "user1@example.com" },
+  { id: "6", name: "Nguyễn Văn Long", email: "user2@example.com" },
   // Thêm thông tin người dùng khác nếu cần
 ];
 export default function MessageScreen({ props, navigation }) {
   // render người dùng
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => navigation.navigate("ChatsScreen")}>
+    <TouchableOpacity onPress={() => navigation.navigate("ChatsScreen",{name: item.name})}>
       <View style={styles.userItem}>
         <View style={styles.avatar}></View>
         <View style={styles.inforUser}>
@@ -46,9 +50,7 @@ export default function MessageScreen({ props, navigation }) {
       {/* Phần content */}
       <View style={styles.content}>
         {/* Phần tab */}
-        <View>
-          
-        </View>
+        <View></View>
         {/* danh sách người đang sử dụng */}
         <FlatList
           data={users}
@@ -71,7 +73,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     backgroundColor: "rgb(0,145,255)",
-    paddingVertical: 10,
   },
   icon: {
     height: "30px",
