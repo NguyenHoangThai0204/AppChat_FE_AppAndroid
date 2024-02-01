@@ -7,7 +7,7 @@ import {
     StyleSheet,
   } from "react-native";
   import { IoArrowBackOutline } from "react-icons/io5";
-  import DiscoverScreen from "./DiscoverScreen";
+  import HomeScreen from "./HomeScreen";
   
   export default function DiscoverApp({ navigation }) {
     return (
@@ -16,7 +16,7 @@ import {
         <View style={styles.header}>
           <TouchableOpacity
             style={{ fontSize: "30px", color: "white" }}
-            onPress={() => navigation.navigate("DiscoverScreen")}
+            onPress={() => navigation.navigate("HomeScreen")}
           >
             <IoArrowBackOutline />
           </TouchableOpacity>
