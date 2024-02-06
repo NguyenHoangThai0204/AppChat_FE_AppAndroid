@@ -15,7 +15,7 @@ import PersonalScreen from './src/screens/PersonalScreen.js';
 
 import DiscoverScreen from './src/screens/DiscoverScreen.js';
 import DiscoverApp from './src/screens/DiscoverApp.js';
-
+import InformationScreen from './src/screens/InformationScreen.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +33,7 @@ export default function App() {
          <Stack.Screen   options={{headerTitle:'Tạo Tài Khoản',headerTitleAlign:'center',headerStyle:{backgroundColor:'#0099FF'}}} name='phone' component={phone}/>
          <Stack.Screen options={{headerShown:false}} name='DiscoverScreen' component={DiscoverScreen}/>
          <Stack.Screen options={{headerShown:false}} name='DiscoverApp' component={DiscoverApp}/>
+         <Stack.Screen options={{headerShown:false}} name='InformationScreen' component={InformationScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
