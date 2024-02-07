@@ -5,7 +5,6 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  ImageBackground,
 } from "react-native";
 import { ArrowLeft } from 'react-native-feather';
 import FirstScreen from "./FirstScreen.js";
@@ -64,6 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   header: {
+    marginTop:30,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#28A0F7",

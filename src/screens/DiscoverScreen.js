@@ -69,7 +69,7 @@ export default function DiscoverScreen({navigation}) {
           style={styles.iconApp}
         />
         <View style={styles.nameApp}>
-          <Text style={{ fontSize: "18px" }}>{item.name}</Text>
+          <Text style={{ fontSize: 18 }}>{item.name}</Text>
         </View>
       </View>
     </TouchableOpacity>

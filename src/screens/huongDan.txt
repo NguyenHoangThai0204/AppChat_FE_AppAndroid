@@ -1,3 +1,9 @@
+để chạy code là "npm run web"
+
+drawer menu thêm 2 dòng này
+yarn add @react-navigation/drawer
+yarn add react-native-gesture-handler react-native-reanimated
+
 yarn add @react-navigation/bottom-tabs
 
 npm install react-native-svg
@@ -5,6 +11,7 @@ npm install react-native-svg
 yarn add react-icons
 
 MessageScreen  màn hình chính tin nhắn
+
 ChatsScreen màn hình đối thoại
 
 InformationScreen màn hình cá nhân
@@ -16,3 +23,11 @@ DiaryScreen màn hình nhật kí
 DiscoverScreen màn hình khám phá
 
 PersonalScreen màn hình trang cá nhân
+
+PersonalChoiceScreen màn hình lựa chọn cá nhân
+
+cài đặt
+=>  npm install -g eas-cli
+
+
+để chạy "npx expo start"

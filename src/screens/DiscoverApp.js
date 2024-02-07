@@ -15,12 +15,12 @@ import {
         {/* Phần header */}
         <View style={styles.header}>
           <TouchableOpacity
-            style={{ fontSize: "30px", color: "white" }}
+            style={{ fontSize: 30, color: "white" }}
             onPress={() => navigation.navigate("HomeScreen")}
           >
             <IoArrowBackOutline />
           </TouchableOpacity>
-          <TouchableOpacity style={{width:"55%", fontSize: "20px", color: "white" }}>
+          <TouchableOpacity style={{width:"55%", fontSize: 20, color: "white" }}>
             <TextInput
               style={styles.inputHeader}
               placeholder="Tìm kiếm"

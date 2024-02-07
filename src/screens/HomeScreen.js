@@ -1,5 +1,6 @@
 import React from "react";
 import { ImageBackground } from "react-native";
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MessageScreen from "./MessageScreen.js";
 import ContactScreen from "./ContactScreen.js";
@@ -22,7 +23,7 @@ const HomeScreen = () => {
           borderTopRightRadius: "10px", // Điều chỉnh giá trị tùy theo nhu cầu của bạn
         },
         labelStyle: {
-          fontSize: "13px", // Điều chỉnh giá trị fontSize tùy theo nhu cầu của bạn
+          fontSize: 13, // Điều chỉnh giá trị fontSize tùy theo nhu cầu của bạn
         },
         safeAreaInsets: {
           bottom: 0, // Cố định vùng an toàn phía dưới

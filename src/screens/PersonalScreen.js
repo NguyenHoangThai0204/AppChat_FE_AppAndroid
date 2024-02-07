@@ -19,7 +19,7 @@ export default function PersonalScreen({ route, navigation }) {
       <View style={styles.header}>
         <View style={styles.menu}>
           <TouchableOpacity
-            style={{ fontSize: "23px", color: "black" }}
+            style={{ fontSize: 23, color: "black" }}
             onPress={() => navigation.navigate("ChatsScreen", { name: name })}
           >
             <IoArrowBackOutline />
@@ -29,13 +29,13 @@ export default function PersonalScreen({ route, navigation }) {
               width: "65%",
             }}
           ></TouchableOpacity>
-          <TouchableOpacity style={{ fontSize: "30px" }}>
+          <TouchableOpacity style={{ fontSize: 30 }}>
             <MdOutlineSettingsVoice style={styles.icon} />
           </TouchableOpacity>
-          <TouchableOpacity style={{ fontSize: "30px" }}>
+          <TouchableOpacity style={{ fontSize: 30 }}>
             <MdOutlineTopic style={styles.icon} />
           </TouchableOpacity>
-          <TouchableOpacity style={{ fontSize: "30px" }}>
+          <TouchableOpacity style={{ fontSize: 30 }}>
             <PiDotsThreeOutlineLight style={styles.icon} />
           </TouchableOpacity>
         </View>

@@ -2,7 +2,7 @@ import { Button, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View 
 
 
 // form nhap ten
-export default function dangky({navigation}){
+export default function SignupScreen({navigation}){
     return(
       <View style={styles.container}>
       

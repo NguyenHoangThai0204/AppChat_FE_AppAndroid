@@ -1,7 +1,7 @@
 import { Button, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 
-export default function phone(){
+export default function PhoneScreen(){
 return(
   <View style={styles.container}>
       

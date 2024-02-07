@@ -14,13 +14,13 @@ import ChatsScreen from "./ChatsScreen.js";
 
 const users = [
   { id: "1", name: "Người dùng 1", email: "user1@example.com" },
-  { id: "2", name: "Thành viên Mến", email: "user2@example.com" },
+  { id: "2", name: "Hồ Trọng Mến", email: "user2@example.com" },
   { id: "3", name: "Nguyễn Hoàng Thái", email: "user1@example.com" },
   { id: "4", name: "Lê Thị Ngọc Mai", email: "user2@example.com" },
   { id: "5", name: "Nguyễn Văn Việt", email: "user1@example.com" },
   { id: "6", name: "Nguyễn Văn Long", email: "user2@example.com" },
-  // Thêm thông tin người dùng khác nếu cần
 ];
+
 export default function MessageScreen({ props, navigation }) {
   // render người dùng
   const renderItem = ({ item }) => (
@@ -28,11 +28,11 @@ export default function MessageScreen({ props, navigation }) {
       <View style={styles.userItem}>
         <View style={styles.avatar}></View>
         <View style={styles.inforUser}>
-          <Text style={{ fontSize: "18px" }}>{item.name}</Text>
-          <Text style={{ fontSize: "16px" }}>{item.email}</Text>
+          <Text style={{ fontSize: 18 }}>{item.name}</Text>
+          <Text style={{ fontSize: 16 }}>{item.email}</Text>
         </View>
       </View>
-    </TouchableOpacity>
+    </TouchableOpacity> 
   );
 
   return (
@@ -65,7 +65,7 @@ export default function MessageScreen({ props, navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: "1",
+    flex: 1,
   },
   header: {
     width: "100%",
@@ -75,9 +75,9 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(0,145,255)",
   },
   icon: {
-    height: "30px",
-    width: "30px",
-    padding: "5px",
+    height: 30,
+    width: 30,
+    padding: 5,
     color: "white",
   },
   inputHeader: {
@@ -87,25 +87,24 @@ const styles = StyleSheet.create({
     borderWidth: 0, // Đặt giá trị của borderWidth là 0 để không hiển thị border
     opacity: 0.8,
   },
-
   content: {
     flex: 1,
   },
   avatar: {
-    width: "55px",
-    height: "55px",
-    padding: "15px",
+    width: 55,
+    height: 55,
+    padding: 15,
     borderRadius: 50,
     backgroundColor: "black",
   },
   inforUser: {
-    marginLeft: "15px",
+    marginLeft: 15,
     textAlign: "left",
   },
   userItem: {
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
-    padding: "8px",
+    padding: 8,
     flexDirection: "row",
   },
 });
