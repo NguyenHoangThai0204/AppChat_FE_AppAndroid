@@ -12,9 +12,7 @@ import HomeScreen from './HomeScreen.js';
 import MessageScreen from "./MessageScreen.js";
 
 function LoginScreen({navigation}) {
-    const handleBackButton = () => {
-        navigation.goBack();
-      };
+    
   return (
     <View style={styles.container}>
     

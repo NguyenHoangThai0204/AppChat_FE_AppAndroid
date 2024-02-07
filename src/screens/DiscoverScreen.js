@@ -8,8 +8,8 @@ import {
   FlatList,
   Image
 } from "react-native";
-import { PiMagnifyingGlassLight } from "react-icons/pi";
-import { FaQrcode } from "react-icons/fa";
+import { Search } from "react-native-feather";
+import { AntDesign } from '@expo/vector-icons';
 import { MdOutlineVideoLibrary } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { TextInput } from "react-native-gesture-handler";
@@ -79,11 +79,11 @@ export default function DiscoverScreen({navigation}) {
     <View style={styles.container}>
       {/* phần header */}
       <View style={styles.header}>
-        <PiMagnifyingGlassLight
+        <Search
           style={styles.iconHeader}
-        ></PiMagnifyingGlassLight>
+        ></Search>
         <TextInput style={styles.inputHeader} placeholder="Tìm kiếm" />
-        <FaQrcode style={styles.icon} />
+        <AntDesign name="qrcode" size={30} color={"white"} />
       </View>
       {/* Tab Zalo Video */}
       <View style={{ alignItems: "center", margin: 10 }}>
