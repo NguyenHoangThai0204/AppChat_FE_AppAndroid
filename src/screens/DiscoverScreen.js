@@ -9,7 +9,8 @@ import {
   Image
 } from "react-native";
 import { Search } from "react-native-feather";
-import { AntDesign } from '@expo/vector-icons';
+import { Codesandbox } from "react-native-feather";
+// import { AntDesign } from '@expo/vector-icons';
 import { MdOutlineVideoLibrary } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { TextInput } from "react-native-gesture-handler";
@@ -83,7 +84,8 @@ export default function DiscoverScreen({navigation}) {
           style={styles.iconHeader}
         ></Search>
         <TextInput style={styles.inputHeader} placeholder="Tìm kiếm" />
-        <AntDesign name="qrcode" size={30} color={"white"} />
+        <Codesandbox style={styles.iconHeader}></Codesandbox>
+        {/* <AntDesign name="qrcode" size={30} color={"white"} /> */}
       </View>
       {/* Tab Zalo Video */}
       <View style={{ alignItems: "center", margin: 10 }}>
