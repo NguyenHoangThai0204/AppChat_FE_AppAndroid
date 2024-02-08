@@ -1,10 +1,9 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, TextInput, FlatList ,Button, TouchableOpacity} from 'react-native';
 
-export default function DiaryScreen() {
-  return (
-    <View>
-         <View style={{flexDirection:'row',justifyContent:'center',backgroundColor:"rgb(0,145,255)"}}>
+function OA(){
+    return(
+        <View>
+             <View style={{flexDirection:'row',justifyContent:'center',backgroundColor:"rgb(0,145,255)"}}>
                   {/* icon tìm kiếm */}
                 <TouchableOpacity style={{width:'10%',alignItems:'center',justifyContent:'center'}}>
                     <View style={{alignItems:'center',justifyContent:'center'}}> <Text>tìm</Text></View>
@@ -15,7 +14,13 @@ export default function DiaryScreen() {
                  </TouchableOpacity>
                  
             </View>
-      
-    </View>
-  );
+
+            <View style={{flexDirection:'row',top:20}}> 
+                <TouchableOpacity style={{backgroundColor:"gray",borderWidth:0.1,borderRadius:30,height:50,width:50,marginLeft:15}}> </TouchableOpacity>
+                <Text style={{marginLeft:20,fontSize:20}}>Tìm thêm Offical account</Text>
+            </View>
+        </View>
+    )
+
 }
+export default OA
