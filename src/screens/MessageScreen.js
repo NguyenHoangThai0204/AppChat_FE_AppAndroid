@@ -19,6 +19,12 @@ const users = [
   { id: "4", name: "Lê Thị Ngọc Mai", email: "user2@example.com" },
   { id: "5", name: "Nguyễn Văn Việt", email: "user1@example.com" },
   { id: "6", name: "Nguyễn Văn Long", email: "user2@example.com" },
+  { id: "1", name: "Người dùng 1", email: "user1@example.com" },
+  { id: "2", name: "Hồ Trọng Mến", email: "user2@example.com" },
+  { id: "3", name: "Nguyễn Hoàng Thái", email: "user1@example.com" },
+  { id: "4", name: "Lê Thị Ngọc Mai", email: "user2@example.com" },
+  { id: "5", name: "Nguyễn Văn Việt", email: "user1@example.com" },
+  { id: "6", name: "Nguyễn Văn Long", email: "user2@example.com" },
 ];
 
 export default function MessageScreen({ props, navigation }) {
@@ -49,8 +55,6 @@ export default function MessageScreen({ props, navigation }) {
       </View>
       {/* Phần content */}
       <View style={styles.content}>
-        {/* Phần tab */}
-        <View></View>
         {/* danh sách người đang sử dụng */}
         <FlatList
           data={users}
