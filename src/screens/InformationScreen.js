@@ -11,6 +11,7 @@ import { MdSecurity } from "react-icons/md";
 import { GrSecure } from "react-icons/gr";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
+import { AntDesign } from '@expo/vector-icons';
 
 export default function InformationScreen({navigation}) {
   const handleSetting = () => {
@@ -27,7 +28,7 @@ export default function InformationScreen({navigation}) {
         ></PiMagnifyingGlassLight>
         <TextInput style={styles.inputHeader} placeholder="Tìm kiếm" />
         <TouchableOpacity onPress={handleSetting}>
-          <IoSettingsOutline style={styles.iconHeader}></IoSettingsOutline>
+          <AntDesign name="setting" size={30} color={"white"} paddingTop={10} />
         </TouchableOpacity>
       </View>
       <TouchableOpacity style={styles.touchInforAcc} onPress={() => navigation.navigate("PersonalInformationScreen")}>

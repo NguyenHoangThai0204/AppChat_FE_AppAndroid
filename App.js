@@ -17,7 +17,8 @@ import DiscoverScreen from "./src/screens/DiscoverScreen.js";
 import DiscoverApp from "./src/screens/DiscoverApp.js";
 import InformationScreen from "./src/screens/InformationScreen.js";
 import PersonalChoiceScreen from "./src/screens/PersonalChoiceScreen.js";
-
+import PersonalInformationScreen from "./src/screens/PersonalInformationScreen.js";
+import LogoutScreen from "./src/screens/LogoutScreen.js";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -92,6 +93,16 @@ export default function App() {
           name="PersonalChoiceScreen"
           component={PersonalChoiceScreen}
         />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="PersonalInformationScreen"
+          component={PersonalInformationScreen}
+        />
+        {/* <Stack.Screen
+          options={{ headerShown: false }}
+          name="LogoutScreen"
+          component={LogoutScreen}
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
