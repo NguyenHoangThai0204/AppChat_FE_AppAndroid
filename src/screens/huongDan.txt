@@ -10,6 +10,8 @@ npm install react-native-svg
 
 yarn add react-icons
 
+npm install @react-navigation/material-top-tabs react-native-tab-view
+
 MessageScreen  màn hình chính tin nhắn
 
 ChatsScreen màn hình đối thoại
@@ -29,5 +31,5 @@ PersonalChoiceScreen màn hình lựa chọn cá nhân
 cài đặt
 =>  npm install -g eas-cli
 
-
 để chạy "npx expo start"
+

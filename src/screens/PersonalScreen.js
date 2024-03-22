@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: "50%",
     transform: "translate(-50%, -50%)",
-  },nameStyle:{
+  },
+  nameStyle:{
     color: "black",
     fontSize:30,
     width:"100%",
