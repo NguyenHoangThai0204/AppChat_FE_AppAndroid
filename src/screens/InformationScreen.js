@@ -11,11 +11,13 @@ import { MdSecurity } from "react-icons/md";
 import { GrSecure } from "react-icons/gr";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
-export default function InformationScreen() {
+
+export default function InformationScreen({navigation}) {
   const handleSetting = () => {
     // Xử lý sự kiện khi người dùng nhấn vào icon Setting
     console.log("Pressed Setting");
   };
+  const nameAcc = "Chủ tài khoản";
   return (
     <View style={styles.container}>
       {/* phần header */}
@@ -28,14 +30,14 @@ export default function InformationScreen() {
           <IoSettingsOutline style={styles.iconHeader}></IoSettingsOutline>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.touchInforAcc}>
+      <TouchableOpacity style={styles.touchInforAcc} onPress={() => navigation.navigate("PersonalInformationScreen")}>
         <Image style={styles.avtImage}></Image>
         <View>
-          <Text style={styles.nameAcc}>Chủ tài khoản</Text>
-          <Text style={{ fontSize: 15, fontStyle: "italic", color: "grey" }}>
-            {" "}
-            Xem trang cá nhân
-          </Text>
+            <Text style={styles.nameAcc}>{nameAcc}</Text>
+            <Text style={{ fontSize: 15, fontStyle: "italic", color: "grey" }}>
+              {" "}
+              Xem trang cá nhân
+            </Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity style={styles.touchOther}>
@@ -87,20 +89,22 @@ export default function InformationScreen() {
             height: "30px",
             width: "30px",
             paddingLeft: 60,
-            paddingTop: 10
+            paddingTop: 10,
           }}
         ></MdKeyboardArrowRight>
       </TouchableOpacity>
       <TouchableOpacity style={styles.touchOther}>
         <GrSecure style={styles.icon}></GrSecure>
         <Text style={styles.nameAcc}>Quyền riêng tư</Text>
-        <MdKeyboardArrowRight style={{
+        <MdKeyboardArrowRight
+          style={{
             color: "gray",
             height: "30px",
             width: "30px",
             paddingLeft: 120,
-            paddingTop: 10
-          }}></MdKeyboardArrowRight>
+            paddingTop: 10,
+          }}
+        ></MdKeyboardArrowRight>
       </TouchableOpacity>
     </View>
   );

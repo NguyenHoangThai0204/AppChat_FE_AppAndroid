@@ -11,7 +11,7 @@ export default function SignupScreen({navigation}){
         <TextInput style={styles.input} value='Đào Lăng Uyển'/>
         </View>
 
-      <TouchableOpacity onPress={()=>navigation.navigate('phone')} style={styles.next}>
+      <TouchableOpacity onPress={()=>navigation.navigate('PhoneScreen')} style={styles.next}>
         <View><Text style={{fontSize:24}}>Tiếp Theo</Text></View>
          
       </TouchableOpacity>

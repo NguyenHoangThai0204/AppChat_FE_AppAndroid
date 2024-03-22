@@ -49,7 +49,7 @@ export default function FirstScreen({ navigation }) {
 
         {/* Phần nút Đăng ký */}
         <TouchableOpacity
-          onPress={() => navigation.navigate("dangky")}
+          onPress={() => navigation.navigate("SignupScreen")}
           style={styles.signup}
         >
           <View>
