@@ -18,36 +18,57 @@ function LoginScreen({ navigation }) {
   let [token, setToken] = useState('')
   const [email, setEmail] = useState('')
   const [pass,setPass]= useState('')
-
+  const [fetchingToken, setFetchingToken] = useState(false);
+  // const getToken = async () => {
+  //   try {
+  //     const response = await postApiNoneToken('/login', {
+  //       "username": email,
+  //       "password": pass,
+  //     });
+  //     setToken(response.data.accessToken);
+  //   } catch (error) {
+  //     console.error("Error while fetching token:", error);
+  //     setToken('no token');
+  //   }
+  // }
   const getToken = async () => {
-    await postApiNoneToken('/login', {
-      "username": email,
-      "password": pass,
-    }).then(res => {
-      setToken(res.data.accessToken)
-    }).catch(err => {
-      console.log(err);
-      setToken('no token')
-    })
+    try {
+      setFetchingToken(true);
+      const response = await postApiNoneToken('/login', {
+        "username": email,
+        "password": pass,
+      });
+      setToken(response.data.accessToken);
+      setFetchingToken(false);
+    } catch (error) {
+      console.error("Error while fetching token:", error);
+      setToken('no token');
+      setFetchingToken(false);
+    }
   }
+  
 
   useEffect(() => {
-      getToken()
-      console.log(token);
-  },[email,pass])
+    if (email && pass) {
+      getToken();
+    }
+  }, [email, pass]);
 
   // check login
-  function login(){
-    if(token!=null){
-      alert(token)
-      console.log(token)
-      navigation.navigate('HomeScreen')
-      // console.log(email)
-      // console.log(pass)
-    }
-    else{
-      alert(token)
-      alert(pass)
+  const login = () => {
+    if (fetchingToken) {
+      // Bạn có thể xử lý khi đang trong quá trình lấy token ở đây
+      alert('Đang xác thực...');
+    } else {
+      if (token === 'no token') {
+        alert('Sai tài khoản hoặc mật khẩu');
+      } else if (token) {
+        alert(token);
+        console.log(token);
+        navigation.navigate('HomeScreen');
+      } else {
+        alert('Token không hợp lệ');
+      }
     }
   }
 
