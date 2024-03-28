@@ -7,8 +7,51 @@ import {
   StyleSheet,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+// import api
+import { postApiNoneToken } from "../../api/Callapi";
+// import use state
+import { useState, useEffect } from "react";
+
 
 function LoginScreen({ navigation }) {
+  // call api để đăng nhập
+  let [token, setToken] = useState('')
+  const [email, setEmail] = useState('')
+  const [pass,setPass]= useState('')
+
+  const getToken = async () => {
+    await postApiNoneToken('/login', {
+      "username": email,
+      "password": pass,
+    }).then(res => {
+      setToken(res.data.accessToken)
+    }).catch(err => {
+      console.log(err);
+      setToken('no token')
+    })
+  }
+
+  useEffect(() => {
+      getToken()
+      console.log(token);
+  },[email,pass])
+
+  // check login
+  function login(){
+    if(token!=null){
+      alert(token)
+      console.log(token)
+      navigation.navigate('HomeScreen')
+      // console.log(email)
+      // console.log(pass)
+    }
+    else{
+      alert(token)
+      alert(pass)
+    }
+  }
+
+
   return (
     <View style={styles.container}>
       <View
@@ -42,8 +85,10 @@ function LoginScreen({ navigation }) {
       <View style={{ top: 40, width: "90%", justifyContent:"space-around" }}>
         <TextInput
           style={styles.input}
-          placeholder="Số điện thoại"
-          keyboardType="phone-pad"
+          placeholder="Số email"
+          keyboardType="email-address"
+          onChangeText={text=>setEmail(text)}
+          value={email}
         />
 
         {/* Phần nhập mật khẩu */}
@@ -51,6 +96,8 @@ function LoginScreen({ navigation }) {
           style={styles.input}
           placeholder="Mật khẩu"
           secureTextEntry={true}
+          onChangeText={text=>setPass(text)}
+          value={pass}
         />
         <TouchableOpacity
           style={styles.forgotPassword}
@@ -64,7 +111,8 @@ function LoginScreen({ navigation }) {
 
       {/* Nút Đăng nhập */}
       <TouchableOpacity
-        onPress={() => navigation.navigate("HomeScreen")}
+        // onPress={() => navigation.navigate("HomeScreen")}
+        onPress={login}
         style={styles.loginButton}
       >
         <Text style={styles.loginButtonText}>Đăng nhập</Text>
