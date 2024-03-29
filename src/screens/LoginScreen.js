@@ -19,18 +19,7 @@ function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('')
   const [pass,setPass]= useState('')
   const [fetchingToken, setFetchingToken] = useState(false);
-  // const getToken = async () => {
-  //   try {
-  //     const response = await postApiNoneToken('/login', {
-  //       "username": email,
-  //       "password": pass,
-  //     });
-  //     setToken(response.data.accessToken);
-  //   } catch (error) {
-  //     console.error("Error while fetching token:", error);
-  //     setToken('no token');
-  //   }
-  // }
+ 
   const getToken = async () => {
     try {
       setFetchingToken(true);

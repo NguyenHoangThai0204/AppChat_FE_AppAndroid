@@ -23,7 +23,7 @@ ContactScreen màn hình danh bạ
 DiaryScreen màn hình nhật kí
 
 DiscoverScreen màn hình khám phá
-
+000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 PersonalScreen màn hình trang cá nhân
 
 PersonalChoiceScreen màn hình lựa chọn cá nhân
@@ -32,4 +32,6 @@ cài đặt
 =>  npm install -g eas-cli
 
 để chạy "npx expo start"
+
+Cài đặt npm i axios
 
