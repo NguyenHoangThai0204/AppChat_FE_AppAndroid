@@ -60,7 +60,9 @@ export default function PersonalChoiceScreen({ route, navigation }) {
                   Tìm tin nhắn
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonY}>
+              <TouchableOpacity style={styles.buttonY}
+                onPress={()=>navigation.navigate("PersonalScreen", {name: name})}
+              >
                 <IoPersonCircleOutline style={styles.icon} />
                 <Text style={{ fontSize: 25, marginLeft: 8 }}>
                   Trang cá nhân

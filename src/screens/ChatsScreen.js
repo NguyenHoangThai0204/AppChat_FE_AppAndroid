@@ -33,7 +33,7 @@ export default function ChatsScreen({ route, navigation }) {
           onPress={() => navigation.navigate("PersonalScreen", { name: name })}
         >
           <View style={styles.inputHeader}>
-            <Text style={{ fontSize: 20,  color: "white" }}>{name}</Text>
+            <Text style={{ fontSize: 23,  fontWeight:550,color: "white" }}>{name}</Text>
             <Text style={{ fontSize: 15, fontStyle: "italic", color: "black" }}>Hoạt động 15 phút trước</Text>
           </View>
         </TouchableOpacity>
