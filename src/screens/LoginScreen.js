@@ -11,56 +11,44 @@ import { AntDesign } from "@expo/vector-icons";
 import { postApiNoneToken } from "../../api/Callapi";
 // import use state
 import { useState, useEffect } from "react";
-
+import { setCurrentUser } from "../../redux/user/UserActions";
+import { useDispatch } from 'react-redux';
 
 function LoginScreen({ navigation }) {
   // call api để đăng nhập
-  let [token, setToken] = useState('')
-  const [email, setEmail] = useState('')
-  const [pass,setPass]= useState('')
+  let [token, setToken] = useState("");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
   const [fetchingToken, setFetchingToken] = useState(false);
- 
-  const getToken = async () => {
-    try {
-      setFetchingToken(true);
-      const response = await postApiNoneToken('/login', {
-        "username": email,
-        "password": pass,
-      });
-      setToken(response.data.accessToken);
-      setFetchingToken(false);
-    } catch (error) {
-      console.error("Error while fetching token:", error);
-      setToken('no token');
-      setFetchingToken(false);
-    }
-  }
-  
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (email && pass) {
-      getToken();
-    }
-  }, [email, pass]);
-
-  // check login
-  const login = () => {
+  // login
+  const login = async () => {
     if (fetchingToken) {
-      // Bạn có thể xử lý khi đang trong quá trình lấy token ở đây
-      alert('Đang xác thực...');
+      alert("Đang xác thực...");
     } else {
-      if (token === 'no token') {
-        alert('Sai tài khoản hoặc mật khẩu');
-      } else if (token) {
-        alert(token);
-        console.log(token);
-        navigation.navigate('HomeScreen');
-      } else {
-        alert('Token không hợp lệ');
+      try {
+        setFetchingToken(true);
+        const response = await postApiNoneToken("/login", {
+          username: email,
+          password: pass,
+        });
+        setFetchingToken(false);
+        if (response.data.userLogin) {
+          alert(response.data.userLogin.name + " đã đăng nhập thành công");
+          //lấy thông tin người dùng và dispatch action để cập nhật trạng thái
+          const user = response.data.userLogin;
+          dispatch(setCurrentUser(user));
+          navigation.navigate("HomeScreen");
+        } else {
+          alert("Tài khoản không tồn tại");
+        }
+      } catch (error) {
+        console.error("Error while login:", error);
+        setFetchingToken(false);
       }
     }
-  }
-
+  };
 
   return (
     <View style={styles.container}>
@@ -92,12 +80,12 @@ function LoginScreen({ navigation }) {
       </View>
 
       {/* Phần nhập số điện thoại */}
-      <View style={{ top: 40, width: "90%", justifyContent:"space-around" }}>
+      <View style={{ top: 40, width: "90%", justifyContent: "space-around" }}>
         <TextInput
           style={styles.input}
           placeholder="Số email"
           keyboardType="email-address"
-          onChangeText={text=>setEmail(text)}
+          onChangeText={(text) => setEmail(text)}
           value={email}
         />
 
@@ -106,7 +94,7 @@ function LoginScreen({ navigation }) {
           style={styles.input}
           placeholder="Mật khẩu"
           secureTextEntry={true}
-          onChangeText={text=>setPass(text)}
+          onChangeText={(text) => setPass(text)}
           value={pass}
         />
         <TouchableOpacity

@@ -10,25 +10,29 @@ import { MdIncompleteCircle } from "react-icons/md";
 import { MdSecurity } from "react-icons/md";
 import { GrSecure } from "react-icons/gr";
 import { MdKeyboardArrowRight } from "react-icons/md";
-
-import { AntDesign } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../redux/user/UserSelector';
 
 export default function InformationScreen({navigation}) {
   const handleSetting = () => {
     // Xử lý sự kiện khi người dùng nhấn vào icon Setting
     console.log("Pressed Setting");
   };
-  const nameAcc = "Chủ tài khoản";
+  const currentUser = useSelector(selectCurrentUser);
+  const nameAcc = currentUser.name;
   return (
     <View style={styles.container}>
       {/* phần header */}
       <View style={styles.header}>
-        <PiMagnifyingGlassLight
-          style={styles.iconHeader}
-        ></PiMagnifyingGlassLight>
-        <TextInput style={styles.inputHeader} placeholder="Tìm kiếm" />
-        <TouchableOpacity onPress={handleSetting}>
-          <AntDesign name="setting" size={30} color={"white"} paddingTop={10} />
+        <View style={styles.headerIconContainer}>
+          <PiMagnifyingGlassLight
+            style={styles.iconHeader}
+          />
+          <TextInput style={styles.inputHeader} placeholder="Tìm kiếm" />
+        </View>
+        <TouchableOpacity onPress={()=> navigation.navigate("FirstScreen")}>
+          <Entypo name="log-out" size={30} color="white" />
         </TouchableOpacity>
       </View>
       <TouchableOpacity style={styles.touchInforAcc} onPress={() => navigation.navigate("PersonalInformationScreen")}>
@@ -118,8 +122,13 @@ const styles = StyleSheet.create({
   header: {
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
+    alignItems: "center",
     backgroundColor: "rgb(0,145,255)",
+  },
+  headerIconContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   inputHeader: {
     fontSize: 20,
@@ -129,8 +138,8 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
   iconHeader: {
-    height: "30px",
-    width: "30px",
+    height: 30,
+    width: 30,
     padding: 10,
     color: "white",
   },
@@ -140,8 +149,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   avtImage: {
-    width: "60px",
-    height: "60px",
+    width: 60,
+    height: 60,
     margin: 15,
     borderRadius: 50,
     backgroundColor: "black",
@@ -160,8 +169,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   icon: {
-    height: "30px",
-    width: "30px",
+    height: 30,
+    width: 30,
     padding: 10,
     color: "rgb(0,145,255)",
   },

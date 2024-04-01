@@ -20,9 +20,12 @@ import PersonalChoiceScreen from "./src/screens/PersonalChoiceScreen.js";
 import PersonalInformationScreen from "./src/screens/PersonalInformationScreen.js";
 import LogoutScreen from "./src/screens/LogoutScreen.js";
 const Stack = createNativeStackNavigator();
+import { Provider } from 'react-redux'; // Import Provider từ react-redux
+import { store } from './redux/store'; // Import Redux store của bạn
 
 export default function App() {
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
@@ -105,6 +108,7 @@ export default function App() {
         /> */}
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
 
