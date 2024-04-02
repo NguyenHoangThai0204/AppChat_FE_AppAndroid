@@ -11,6 +11,10 @@ import { MdOutlineSettingsVoice, MdOutlineTopic } from "react-icons/md";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { PiDotsThreeOutlineLight } from "react-icons/pi";
 import ChatsScreen from "./ChatsScreen.js";
+import { Feather } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function PersonalScreen({ route, navigation }) {
   const { name } = route.params;
@@ -19,10 +23,9 @@ export default function PersonalScreen({ route, navigation }) {
       <View style={styles.header}>
         <View style={styles.menu}>
           <TouchableOpacity
-            style={{ fontSize: 23, color: "black" }}
             onPress={() => navigation.navigate("ChatsScreen", { name: name })}
           >
-            <IoArrowBackOutline />
+            <AntDesign name="arrowleft" size={30} color="white" />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -30,13 +33,13 @@ export default function PersonalScreen({ route, navigation }) {
             }}
           ></TouchableOpacity>
           <TouchableOpacity style={{ fontSize: 30 }}>
-            <MdOutlineSettingsVoice style={styles.icon} />
+            <Feather name="phone-call" size={28} color={"white"} padding={"5px"}/>
           </TouchableOpacity>
           <TouchableOpacity style={{ fontSize: 30 }}>
-            <MdOutlineTopic style={styles.icon} />
+           <MaterialIcons name="videocam" size={28} color={"white"}  padding={"5px"}/>
           </TouchableOpacity>
           <TouchableOpacity style={{ fontSize: 30 }}>
-            <PiDotsThreeOutlineLight style={styles.icon} />
+            <Entypo name="dots-three-horizontal" size={28} color={"white"}  padding={"5px"}/>
           </TouchableOpacity>
         </View>
       </View>

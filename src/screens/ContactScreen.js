@@ -20,6 +20,7 @@ export default function ContactScreen() {
   const [searchResults, setSearchResults] = useState([]);
 
   return (
+    
     <Tab.Navigator
       tabBarOptions={{
         style: {

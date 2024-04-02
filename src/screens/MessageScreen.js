@@ -9,6 +9,10 @@ import {
 } from "react-native";
 import { PiMagnifyingGlassLight } from "react-icons/pi";
 import { FaQrcode } from "react-icons/fa";
+import { MaterialIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+
 import { IoMdAdd } from "react-icons/io";
 import ChatsScreen from "./ChatsScreen.js";
 
@@ -45,13 +49,13 @@ export default function MessageScreen({ props, navigation }) {
     <View style={styles.container}>
       {/* phần header */}
       <View style={styles.header}>
-        <PiMagnifyingGlassLight style={styles.icon} />
+      <MaterialIcons name="search" size={30} color={"white"} padding={"5px"} />
         <TextInput
           style={styles.inputHeader}
           placeholder="Tìm kiếm"
         ></TextInput>
-        <FaQrcode style={styles.icon} />
-        <IoMdAdd style={styles.icon} />
+        <AntDesign name="qrcode" size={30} color={"white"} padding={"5px"} />
+        <FontAwesome5 name="plus" size={30} color={"white"} padding={"5px"} />
       </View>
       {/* Phần content */}
       <View style={styles.content}>

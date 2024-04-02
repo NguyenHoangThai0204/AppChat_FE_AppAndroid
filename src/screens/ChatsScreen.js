@@ -1,11 +1,6 @@
 import React, { useState, useRef } from "react";
 import { View, Text, FlatList, TextInput, TouchableOpacity, StyleSheet } from "react-native";
-import { IoArrowBackOutline, IoSend } from "react-icons/io5";
-import { RiVideoAddFill } from "react-icons/ri";
-import { IoIosCall } from "react-icons/io";
-import { MdMenuOpen, MdOutlineSettingsVoice, MdOutlineTopic } from "react-icons/md";
-import { SiIconify } from "react-icons/si";
-import { PiDotsThreeOutlineLight } from "react-icons/pi";
+import { AntDesign, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function ChatsScreen({ route, navigation }) {
   const { name } = route.params;
@@ -26,7 +21,7 @@ export default function ChatsScreen({ route, navigation }) {
       {/* Phần header */}
       <View style={styles.header}>
         <TouchableOpacity style={{ fontSize: 23, color: "white" }} onPress={() => navigation.navigate("HomeScreen")}>
-          <IoArrowBackOutline />
+          <AntDesign name="arrowleft" size={30} color="white" />
         </TouchableOpacity>
         <TouchableOpacity
           style={{ width: "65%", flexDirection: "column" }}
@@ -38,17 +33,17 @@ export default function ChatsScreen({ route, navigation }) {
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={{ fontSize: 30, color: "white" }}>
-          <IoIosCall style={styles.icon} />
+          <Entypo name="phone" size={23} color="white" />
         </TouchableOpacity>
         <TouchableOpacity style={{ fontSize: 30, color: "white" }}>
-          <RiVideoAddFill style={styles.icon} />
+          <Entypo name="video-camera" size={23} color="white" />
         </TouchableOpacity>
         {/* Phần menu cá nhân */}
         <TouchableOpacity
           style={{ fontSize: 30, color: "white" }}
           onPress={() => navigation.navigate("PersonalChoiceScreen", { name: name })}
         >
-          <MdMenuOpen style={styles.icon} />
+          <MaterialCommunityIcons name="dots-vertical" size={23} color="white" />
         </TouchableOpacity>
       </View>
       <View style={{ flex: 1 }}>
@@ -63,7 +58,7 @@ export default function ChatsScreen({ route, navigation }) {
       {/* Phần footer */}
       <View style={styles.footer}>
         <TouchableOpacity style={{ fontSize: 23, color: "white" }}>
-          <SiIconify />
+          <MaterialCommunityIcons name="emoticon-happy-outline" size={23} color="white" />
         </TouchableOpacity>
         <TouchableOpacity style={{ width: "55%", fontSize: 20, color: "white" }}>
           <TextInput
@@ -75,16 +70,16 @@ export default function ChatsScreen({ route, navigation }) {
           />
         </TouchableOpacity>
         <TouchableOpacity style={{ fontSize: 30, color: "white" }} onPress={handleSend}>
-          <IoSend style={styles.icon} />
+          <Entypo name="direction" size={23} color="white" />
         </TouchableOpacity>
         <TouchableOpacity style={{ fontSize: 30, color: "white" }}>
-          <MdOutlineSettingsVoice style={styles.icon} />
+          <Entypo name="mic" size={23} color="white" />
         </TouchableOpacity>
         <TouchableOpacity style={{ fontSize: 30, color: "white" }}>
-          <MdOutlineTopic style={styles.icon} />
+          <Entypo name="attachment" size={23} color="white" />
         </TouchableOpacity>
         <TouchableOpacity style={{ fontSize: 30, color: "white" }}>
-          <PiDotsThreeOutlineLight style={styles.icon} />
+          <MaterialCommunityIcons name="dots-vertical" size={23} color="white" />
         </TouchableOpacity>
       </View>
     </View>
@@ -119,12 +114,6 @@ const styles = StyleSheet.create({
     padding: 1,
     justifyContent: "space-around",
     backgroundColor: "rgb(0, 145, 255)",
-  },
-  icon: {
-    height: 23,
-    width: 23,
-    padding: 5,
-    color: "white",
   },
   inputHeader: {
     fontSize: 23,

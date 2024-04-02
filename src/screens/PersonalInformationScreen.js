@@ -9,11 +9,10 @@ export default function PersonalInformationScreen({ navigation }) {
   const currentUser = useSelector(selectCurrentUser);
   const nameAcc = currentUser.name;
 
-  // Định dạng ngày sinh và giới tính
+  // Định dạng ngày sinh 
   const formattedDateOfBirth = new Date(
     currentUser.dateOfBirth
   ).toLocaleDateString();
-  const gender = currentUser.gender ? "Nam" : "Nữ";
 
   const [editName, setEditName] = useState(false);
   const [editGender, setEditGender] = useState(false);

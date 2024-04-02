@@ -16,6 +16,10 @@ import ChatsScreen from "./ChatsScreen";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdGroupAdd } from "react-icons/md";
 import { IoSearchSharp, IoPersonCircleOutline } from "react-icons/io5";
+import { FontAwesome } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function PersonalChoiceScreen({ route, navigation }) {
     const { name } = route.params;
@@ -27,7 +31,7 @@ export default function PersonalChoiceScreen({ route, navigation }) {
           <TouchableOpacity
             onPress={() => navigation.navigate("ChatsScreen", { name: name })}
           >
-            <IoArrowBackOutline style={{ fontSize: 25, color: "white" }} />
+            <FontAwesome name="arrow-left" size={30} color="white" padding={"5px"} />
           </TouchableOpacity>
           <View>
             <p
@@ -55,7 +59,7 @@ export default function PersonalChoiceScreen({ route, navigation }) {
           <View style={styles.body}>
             <View style={{justifyContent:"space-around",flexDirection:"row", margin:0, padding:0,width:"100%"}}>
               <TouchableOpacity style={styles.buttonY}>
-                <IoSearchSharp style={styles.icon} />
+              <MaterialIcons name="search" size={32} color={"black"} padding={"5px"} />
                 <Text style={{ fontSize: 25, marginLeft: 8 }}>
                   Tìm tin nhắn
                 </Text>
@@ -63,18 +67,18 @@ export default function PersonalChoiceScreen({ route, navigation }) {
               <TouchableOpacity style={styles.buttonY}
                 onPress={()=>navigation.navigate("PersonalScreen", {name: name})}
               >
-                <IoPersonCircleOutline style={styles.icon} />
+                <Ionicons name="person-circle-sharp" size={32} color={"black"} padding={"5px"} />
                 <Text style={{ fontSize: 25, marginLeft: 8 }}>
                   Trang cá nhân
                 </Text>
               </TouchableOpacity>
             </View>
             <TouchableOpacity style={styles.buttonX}>
-              <MdGroupAdd style={styles.icon} />
+              <MaterialIcons name="group-add" size={32} color={"black"} padding={"5px"} />
               <Text style={{ fontSize: 28, marginLeft: 8 }}>Tạo group</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonX}>
-              <AiOutlineDelete style={styles.icon} />
+              <AntDesign name="delete" size={32} color={"black"} padding={"5px"} />
               <Text style={{ fontSize: 28, marginLeft: 8 }}>Xoá hội thoại</Text>
             </TouchableOpacity>
           </View>

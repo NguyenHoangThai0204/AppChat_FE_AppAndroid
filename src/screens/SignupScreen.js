@@ -5,7 +5,6 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Alert,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import CustomAlert from "../components/CustomAlert";
@@ -51,11 +50,13 @@ export default function SignupScreen({ navigation }) {
 
   const createAccount = async () => {
     try {
+      const selectedDate = new Date(year, month - 1, day);
       const response = await postApiNoneToken("/signup", {
         name: name,
         username: email,
         gender: gender,
-        dateOfBirth: dateOfBirth,
+        // dateOfBirth: dateOfBirth,
+        dateOfBirth: selectedDate,
         phone: phone,
         password: password,
         confirmPassword: confirm,

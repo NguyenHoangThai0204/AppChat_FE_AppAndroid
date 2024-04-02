@@ -7,9 +7,14 @@ import ContactScreen from "./ContactScreen.js";
 import DiscoverScreen from "./DiscoverScreen.js";
 import DiaryScreen from "./DiaryScreen.js";
 import InformationScreen from "./InformationScreen.js";
-import { FiMessageCircle } from "react-icons/fi";
-import { FaAddressBook } from "react-icons/fa";
-import { MdAppsOutage ,MdMenuBook,MdOutlinePersonalInjury  } from "react-icons/md";
+// import { FiMessageCircle } from "react-icons/fi";
+import { Entypo } from '@expo/vector-icons';
+// import { FaAddressBook } from "react-icons/fa";
+import { FontAwesome } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+// import { MdAppsOutage ,MdMenuBook,MdOutlinePersonalInjury  } from "react-icons/md";
 
 const Tab = createBottomTabNavigator();
 
@@ -36,7 +41,8 @@ const HomeScreen = () => {
           options={{
             headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <FiMessageCircle color={color} size={size} />
+              // <FiMessageCircle color={color} size={size} />
+              <Entypo name="message" size={size} color={color} />
             ),
           }}
           component={MessageScreen}
@@ -46,7 +52,8 @@ const HomeScreen = () => {
           options={{
             headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <FaAddressBook color={color} size={size} />
+              // <FaAddressBook color={color} size={size} />
+              <FontAwesome name="address-book" size={size} color={color} />
             ),
           }}
           component={ContactScreen}
@@ -56,7 +63,8 @@ const HomeScreen = () => {
           options={{
             headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <MdAppsOutage color={color} size={size} />
+              // <MdAppsOutage color={color} size={size} />
+              <AntDesign name="appstore1" size={size} color={color} />
             ),
           }}
           component={DiscoverScreen}
@@ -66,7 +74,8 @@ const HomeScreen = () => {
           options={{
             headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <MdMenuBook  color={color} size={size} />
+              // <MdMenuBook  color={color} size={size} />
+              <MaterialIcons name="menu-book" size={size} color={color} />
             ),
           }}
           component={DiaryScreen}
@@ -76,7 +85,8 @@ const HomeScreen = () => {
           options={{
             headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <MdOutlinePersonalInjury  color={color} size={size} />
+              // <MdOutlinePersonalInjury  color={color} size={size} />
+              <Ionicons name="person" size={size} color={color} />
             ),
           }}
           component={InformationScreen}

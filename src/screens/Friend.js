@@ -1,5 +1,7 @@
 import { View, Text, TextInput, FlatList ,Button, TouchableOpacity, StyleSheet} from 'react-native';
 import { createSheet } from 'react-native-web/dist/cjs/exports/StyleSheet/dom';
+import { MaterialIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 function Friend(){
     return(
@@ -8,11 +10,11 @@ function Friend(){
             <View style={{flexDirection:'row',justifyContent:'center',backgroundColor:"rgb(0,145,255)"}}>
                   {/* icon tìm kiếm */}
                 <TouchableOpacity style={{backgroundColor:"rgb(0,145,255)",width:'10%',alignItems:'center',justifyContent:'center'}}>
-                    <View style={{alignItems:'center',justifyContent:'center'}}> <Text>tìm</Text></View>
+                <MaterialIcons name="search" size={30} color={"white"} padding={"5px"} />
                  </TouchableOpacity>
                  <TextInput style={{height:50,width:'80%',backgroundColor:"rgb(0,145,255)",color:'white', padding: "5px",fontSize:20}}  placeholder='Tìm kiếm'/>
                  <TouchableOpacity style={{width:'10%',alignItems:'center',justifyContent:'center'}}>
-                    <View style={{alignItems:'center',justifyContent:'center'}}> <Text>tìm</Text></View>
+                 <AntDesign name="qrcode" size={30} color={"white"} padding={"5px"} />
                  </TouchableOpacity>
             </View>
 

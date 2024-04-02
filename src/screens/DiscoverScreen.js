@@ -6,18 +6,17 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   FlatList,
-  Image
+  Image,
 } from "react-native";
 import { Search } from "react-native-feather";
-import { Codesandbox } from "react-native-feather";
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons";
 import { MdOutlineVideoLibrary } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { TextInput } from "react-native-gesture-handler";
 import { CiGrid41 } from "react-icons/ci";
-import DiscoverApp from "./DiscoverApp";
+import { MaterialIcons } from "@expo/vector-icons";
 
-export default function DiscoverScreen({navigation}) {
+export default function DiscoverScreen({ navigation }) {
   const miniApps = [
     {
       id: "1",
@@ -54,7 +53,7 @@ export default function DiscoverScreen({navigation}) {
       name: "Nạp đt",
       icon: "../assets/miniApp1.png",
       url: "https://zaloweb.me/",
-    }
+    },
     // Thêm thông tin người dùng khác nếu cần
   ];
   const handleEditMiniApp = () => {
@@ -65,10 +64,7 @@ export default function DiscoverScreen({navigation}) {
   const renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => navigation.navigate("DiscoverApp")}>
       <View style={styles.appItem}>
-        <Image
-          source={{ uri:item?.icon }}
-          style={styles.iconApp}
-        />
+        <Image source={{ uri: item?.icon }} style={styles.iconApp} />
         <View style={styles.nameApp}>
           <Text style={{ fontSize: 18 }}>{item.name}</Text>
         </View>
@@ -80,39 +76,33 @@ export default function DiscoverScreen({navigation}) {
     <View style={styles.container}>
       {/* phần header */}
       <View style={styles.header}>
-        <Search
-          style={styles.iconHeader}
-        ></Search>
+        <MaterialIcons name="search" size={30} color={"white"} padding={"5px"} />
         <TextInput style={styles.inputHeader} placeholder="Tìm kiếm" />
-        {/* <Codesandbox style={styles.iconHeader}></Codesandbox> */}
         <AntDesign name="qrcode" size={30} color={"white"} padding={"5px"} />
       </View>
       {/* Tab Zalo Video */}
       <View style={{ alignItems: "center", margin: 10 }}>
         <TouchableOpacity style={styles.tabVideo}>
-          <MdOutlineVideoLibrary style={styles.icon} />
+          <MaterialIcons name="video-library" size={30} color="#00FFFF" />
           <Text style={styles.text}>Zaloo Video</Text>
-          <MdKeyboardArrowRight
-            style={{
-              color: "gray",
-              height: "30px",
-              width: "30px",
-              marginLeft: "35%",
-            }}
-          ></MdKeyboardArrowRight>
+          <MaterialIcons
+            name="keyboard-double-arrow-right"
+            size={30}
+            color="gray"
+          />
         </TouchableOpacity>
       </View>
       {/* {Tab Mini app} */}
       {/* header */}
       <View style={styles.tabVideo}>
-        <CiGrid41 style={styles.icon} />
+        <AntDesign name="appstore1" size={30} color="#00FFFF" />
         <Text style={styles.text}>Mini App Yêu thích</Text>
         <TouchableOpacity onPress={handleEditMiniApp}>
           <Text style={{ fontSize: 15, fontStyle: "normal" }}>Chỉnh sửa</Text>
         </TouchableOpacity>
       </View>
-        {/* danh sách mini app */}
-        <View style={styles.tabMiniApp}>
+      {/* danh sách mini app */}
+      <View style={styles.tabMiniApp}>
         <FlatList
           data={miniApps}
           renderItem={renderItem}
@@ -120,28 +110,23 @@ export default function DiscoverScreen({navigation}) {
           showsHorizontalScrollIndicator={true}
           numColumns={3}
         />
-        </View>
-            {/* Tab Zalo Video */}
-      <View style={{ alignItems: "center", paddingTop:10}}>
-        <TouchableOpacity style={styles.tabVideo}>
-          <MdOutlineVideoLibrary style={styles.icon} />
-          <Text style={styles.text}>Zaloo Video</Text>
-          <Text style={{ fontSize: 15, fontStyle: "normal" }}>Gợi ý cho bạn</Text>
-          <MdKeyboardArrowRight
-            style={{
-              color: "gray",
-              height: "30px",
-              width: "30px",
-              marginLeft: 10
-            }}
-          ></MdKeyboardArrowRight>
-        </TouchableOpacity>
-        <View>
-          
-        </View>
       </View>
-
-        
+      {/* Tab Zalo Video */}
+      <View style={{ alignItems: "center", paddingTop: 10 }}>
+        <TouchableOpacity style={styles.tabVideo}>
+          <AntDesign name="appstore1" size={30} color="#00FFFF" />
+          <Text style={styles.text}>Zaloo Video</Text>
+          <Text style={{ fontSize: 15, fontStyle: "normal" }}>
+            Gợi ý cho bạn
+          </Text>
+          <MaterialIcons
+            name="keyboard-double-arrow-right"
+            size={30}
+            color="gray"
+          />
+        </TouchableOpacity>
+        <View></View>
+      </View>
     </View>
   );
 }
@@ -194,7 +179,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems:"center",
+    alignItems: "center",
     borderWidth: 0,
     backgroundColor: "white",
   },
@@ -204,7 +189,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     padding: 20,
     marginVertical: 10,
-    
   },
   iconApp: {
     width: "75px",
