@@ -7,6 +7,7 @@ import {
   ImageBackground,
 } from "react-native";
 import Swiper from "react-native-swiper";
+import CustomAlert from "../components/CustomAlert";
 
 function IntroductionSlide() {
   return (
@@ -32,8 +33,13 @@ function IntroductionSlide() {
 
 export default function FirstScreen({ navigation }) {
   return (
-    <ImageBackground style={{height:'100%', width:'100%'}} source={require('../img/image_background.webp')} resizeMode='stretch'>
+    <ImageBackground
+      style={{ height: "100%", width: "100%" }}
+      source={require("../img/image_background.webp")}
+      resizeMode="stretch"
+    >
       <View style={styles.container}>
+        <CustomAlert message="" />
         {/* Slide giới thiệu ứng dụng */}
         <IntroductionSlide />
 
@@ -65,8 +71,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    width:'100%',
-    height:'100%',
+    width: "100%",
+    height: "100%",
     justifyContent: "flex-end", // Đưa nội dung xuống cuối màn hình
     paddingBottom: 50, // Khoảng cách bottom với cuối màn hình
   },

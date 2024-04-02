@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Alert,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 // import api
@@ -13,6 +14,7 @@ import { postApiNoneToken } from "../../api/Callapi";
 import { useState, useEffect } from "react";
 import { setCurrentUser } from "../../redux/user/UserActions";
 import { useDispatch } from 'react-redux';
+import CustomAlert from "../components/CustomAlert";
 
 function LoginScreen({ navigation }) {
   // call api để đăng nhập
@@ -21,11 +23,17 @@ function LoginScreen({ navigation }) {
   const [pass, setPass] = useState("");
   const [fetchingToken, setFetchingToken] = useState(false);
   const dispatch = useDispatch();
+  const [textMessage, setTextMessage] = useState([]);
+
+  // Thêm thông báo vào mảng textMessage
+  const addMessage = (message) => {
+    setTextMessage((prevMessages) => [...prevMessages, message]);
+  };
 
   // login
   const login = async () => {
     if (fetchingToken) {
-      alert("Đang xác thực...");
+      addMessage("Đang xác thực...");
     } else {
       try {
         setFetchingToken(true);
@@ -34,24 +42,34 @@ function LoginScreen({ navigation }) {
           password: pass,
         });
         setFetchingToken(false);
-        if (response.data.userLogin) {
-          alert(response.data.userLogin.name + " đã đăng nhập thành công");
+        if (response.data.status === 'ERR') {
+          // Phản hồi từ backend cho biết có lỗi xảy ra
+          addMessage("Đăng nhập không thành công: " + response.data.message);
+        } else if (response.data.userLogin) {
+          // Phản hồi từ backend cho biết đăng nhập thành công
+          addMessage(response.data.userLogin.name + " đã đăng nhập thành công");
           //lấy thông tin người dùng và dispatch action để cập nhật trạng thái
           const user = response.data.userLogin;
           dispatch(setCurrentUser(user));
           navigation.navigate("HomeScreen");
         } else {
-          alert("Tài khoản không tồn tại");
+          // Phản hồi từ backend không chứa userLogin
+          addMessage("Tài khoản không tồn tại");
         }
       } catch (error) {
         console.error("Error while login:", error);
+        addMessage("Đã xảy ra lỗi khi đăng nhập");
         setFetchingToken(false);
       }
     }
   };
+  
 
   return (
     <View style={styles.container}>
+      {textMessage.map((message, index) => (
+        <CustomAlert key={index} message={message} />
+      ))}
       <View
         style={{
           top: 20,

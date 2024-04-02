@@ -62,7 +62,8 @@ export default function App() {
           options={{
             headerTitle: "Tạo Tài Khoản",
             headerTitleAlign: "center",
-            headerStyle: { backgroundColor: "#0099FF" },
+            headerTitleStyle: { color: "white" },
+            headerStyle: { backgroundColor: "#0099FF"},
           }}
           name="SignupScreen"
           component={SignupScreen}
