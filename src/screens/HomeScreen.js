@@ -19,9 +19,9 @@ const HomeScreen = () => {
     <Tab.Navigator
       screenOptions={{
         style: {
-          padding: "10px", // Điều chỉnh giá trị padding tùy theo nhu cầu của bạn
-          borderTopLeftRadius: "10px", // Điều chỉnh giá trị tùy theo nhu cầu của bạn
-          borderTopRightRadius: "10px", // Điều chỉnh giá trị tùy theo nhu cầu của bạn
+          padding: 10, // Sử dụng giá trị số thay vì chuỗi
+          borderTopLeftRadius: 10, // Sử dụng giá trị số thay vì chuỗi
+          borderTopRightRadius: 10, // Sử dụng giá trị số thay vì chuỗi
         },
         labelStyle: {
           fontSize: 13, // Điều chỉnh giá trị fontSize tùy theo nhu cầu của bạn

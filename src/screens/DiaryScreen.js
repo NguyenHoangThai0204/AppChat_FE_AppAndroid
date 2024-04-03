@@ -10,6 +10,10 @@ export default function DiaryScreen() {
           flexDirection: "row",
           justifyContent: "center",
           backgroundColor: "rgb(0,145,255)",
+          top: 20,
+          height: 60,
+          padding: 10,
+          paddingBottom: 25,
         }}
       >
         {/* icon tìm kiếm */}

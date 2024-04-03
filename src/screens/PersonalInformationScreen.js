@@ -80,7 +80,7 @@ export default function PersonalInformationScreen({ navigation }) {
       </View>
       <View style={style.coverImage}></View>
       <View style={style.content}>
-        <View style={style.avatarAcc}></View>
+        <TouchableOpacity style={style.avatarAcc}></TouchableOpacity>
         <Text style={style.nameAcc}>{nameAcc}</Text>
         <Text style={style.headerInformation}>Thông tin cá nhân</Text>
 
@@ -167,11 +167,15 @@ const style = StyleSheet.create({
     flex: 1,
   },
   header: {
+    top: 20,
+    height: 65,
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "rgb(0,145,255)",
+    padding:20,
+    marginBottom: 20,
   },
   headerIconContainer: {
     flexDirection: "row",
@@ -186,12 +190,13 @@ const style = StyleSheet.create({
     flex: 1,
   },
   avatarAcc: {
-    width: 120,
-    height: 120,
-    borderRadius: 50,
+    width: 130,
+    height: 130,
+    borderRadius: 70,
     backgroundColor: "black",
     position: "absolute",
-    left: "50%",
+    left: "85%",
+    top: "27%",
     transform: [{ translateX: -0.5 * Dimensions.get("window").width }, { translateY: -0.5 * Dimensions.get("window").width}],
   },
   nameAcc: {
@@ -201,7 +206,7 @@ const style = StyleSheet.create({
     textAlign: "center",
     position: "absolute",
     left: "50%",
-    top: "11%",
+    top: "50%",
     transform: [{ translateX: -0.5 * Dimensions.get("window").width }, { translateY: -0.5 * Dimensions.get("window").width}],
   },
   headerInformation: {

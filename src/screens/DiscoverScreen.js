@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
+  TextInput,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { TextInput } from "react-native-gesture-handler";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export default function DiscoverScreen({ navigation }) {

@@ -97,6 +97,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
+    top: 20,
+    height: 80,
+    padding: 10,
+    paddingBottom: 25,
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
