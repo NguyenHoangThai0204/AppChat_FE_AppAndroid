@@ -7,10 +7,6 @@ import {
   StyleSheet,
   FlatList,
 } from "react-native";
-import { MdOutlineSettingsVoice, MdOutlineTopic } from "react-icons/md";
-import { IoArrowBackOutline } from "react-icons/io5";
-import { PiDotsThreeOutlineLight } from "react-icons/pi";
-import ChatsScreen from "./ChatsScreen.js";
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';

@@ -2,7 +2,8 @@ import axios from 'axios'
 
 
 var api = axios.create({
-    baseURL:'http://localhost:3001/api/user'
+    // baseURL:'http://localhost:3001/api/user'
+    baseURL:'http://192.168.1.8:3001/api/user'
 })
 
 // export const getApiWithToken=(url)=>{

@@ -1,4 +1,4 @@
-import { View, Text, TextInput, FlatList ,Button, TouchableOpacity} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 

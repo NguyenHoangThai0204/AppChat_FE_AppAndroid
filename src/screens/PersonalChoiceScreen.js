@@ -8,14 +8,6 @@ import {
   ScrollView,
   Image,
 } from "react-native";
-import { IoArrowBackOutline } from "react-icons/io5";
-import { RiVideoAddFill } from "react-icons/ri";
-import { IoIosCall } from "react-icons/io";
-import { MdMenuOpen } from "react-icons/md";
-import ChatsScreen from "./ChatsScreen";
-import { AiOutlineDelete } from "react-icons/ai";
-import { MdGroupAdd } from "react-icons/md";
-import { IoSearchSharp, IoPersonCircleOutline } from "react-icons/io5";
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';

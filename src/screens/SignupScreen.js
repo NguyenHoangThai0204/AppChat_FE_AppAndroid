@@ -349,9 +349,9 @@ const styles = StyleSheet.create({
   input: {
     margin: 8,
     fontSize: 19,
-    outline: "none",
+    outline: 0,
     overflow: "hidden",
-    border: "none",
+    border: 0,
   },
   next: {
     top: 90,

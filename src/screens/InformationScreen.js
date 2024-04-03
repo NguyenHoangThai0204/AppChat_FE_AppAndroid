@@ -1,16 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { PiMagnifyingGlassLight } from "react-icons/pi";
-import { TextInput } from "react-native-gesture-handler";
-import { IoSettingsOutline } from "react-icons/io5";
-import { IoWalletOutline } from "react-icons/io5";
-import { CiMusicNote1 } from "react-icons/ci";
-import { CiCloudOn } from "react-icons/ci";
-import { MdIncompleteCircle } from "react-icons/md";
-import { MdSecurity } from "react-icons/md";
-import { GrSecure } from "react-icons/gr";
-import { MdKeyboardArrowRight } from "react-icons/md";
+import { TextInput } from "react-native";
 import { Entypo } from '@expo/vector-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { SimpleLineIcons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../redux/user/UserSelector';
 
@@ -26,9 +21,7 @@ export default function InformationScreen({navigation}) {
       {/* phần header */}
       <View style={styles.header}>
         <View style={styles.headerIconContainer}>
-          <PiMagnifyingGlassLight
-            style={styles.iconHeader}
-          />
+        <MaterialIcons name="search" size={30} color={"white"} padding={"5px"} />
           <TextInput style={styles.inputHeader} placeholder="Tìm kiếm" />
         </View>
         <TouchableOpacity onPress={()=> navigation.navigate("FirstScreen")}>
@@ -46,7 +39,7 @@ export default function InformationScreen({navigation}) {
         </View>
       </TouchableOpacity>
       <TouchableOpacity style={styles.touchOther}>
-        <CiMusicNote1 style={styles.icon}></CiMusicNote1>
+        <FontAwesome6 name="music" size={30} color={"white"} padding={"5px"}></FontAwesome6>
         <View>
           <Text style={styles.nameAcc}>Nhạc chờ Zaloo</Text>
           <Text style={{ fontSize: 15, fontStyle: "normal", color: "grey" }}>
@@ -56,7 +49,7 @@ export default function InformationScreen({navigation}) {
         </View>
       </TouchableOpacity>
       <TouchableOpacity style={styles.touchOther}>
-        <IoWalletOutline style={styles.icon}></IoWalletOutline>
+        <Entypo name="wallet" size={30} color={"white"} padding={"5px"}></Entypo>
         <View>
           <Text style={styles.nameAcc}>Ví QR</Text>
           <Text style={{ fontSize: 15, fontStyle: "normal", color: "grey" }}>
@@ -66,7 +59,7 @@ export default function InformationScreen({navigation}) {
         </View>
       </TouchableOpacity>
       <TouchableOpacity style={styles.touchOther}>
-        <CiCloudOn style={styles.icon}></CiCloudOn>
+       <Entypo name="cloud" size={30} color={"white"} padding={"5px"}></Entypo>
         <View>
           <Text style={styles.nameAcc}>Cloud của tôi</Text>
           <Text style={{ fontSize: 15, fontStyle: "normal", color: "grey" }}>
@@ -76,7 +69,7 @@ export default function InformationScreen({navigation}) {
         </View>
       </TouchableOpacity>
       <TouchableOpacity style={styles.touchOther}>
-        <MdIncompleteCircle style={styles.icon}></MdIncompleteCircle>
+        <MaterialCommunityIcons name="circle-slice-5" size={30} color={"white"} padding={"5px"}></MaterialCommunityIcons>
         <View>
           <Text style={styles.nameAcc}>Dung lượng và dữ liệu</Text>
           <Text style={{ fontSize: 15, fontStyle: "normal", color: "grey" }}>
@@ -86,30 +79,14 @@ export default function InformationScreen({navigation}) {
         </View>
       </TouchableOpacity>
       <TouchableOpacity style={styles.touchOther}>
-        <MdSecurity style={styles.icon}></MdSecurity>
+        <MaterialCommunityIcons name="security" size={30} color={"white"} padding={"5px"}></MaterialCommunityIcons>
         <Text style={styles.nameAcc}>Tài khoản và bảo mật</Text>
-        <MdKeyboardArrowRight
-          style={{
-            color: "gray",
-            height: "30px",
-            width: "30px",
-            paddingLeft: 60,
-            paddingTop: 10,
-          }}
-        ></MdKeyboardArrowRight>
+        <SimpleLineIcons name="arrow-right" size={30} color={"gray"} paddingLeft= {60}  paddingTop= {10}></SimpleLineIcons>
       </TouchableOpacity>
       <TouchableOpacity style={styles.touchOther}>
-        <GrSecure style={styles.icon}></GrSecure>
+        <MaterialIcons name="privacy-tip" size={30} color={"white"} padding={"5px"}></MaterialIcons>
         <Text style={styles.nameAcc}>Quyền riêng tư</Text>
-        <MdKeyboardArrowRight
-          style={{
-            color: "gray",
-            height: "30px",
-            width: "30px",
-            paddingLeft: 120,
-            paddingTop: 10,
-          }}
-        ></MdKeyboardArrowRight>
+        <SimpleLineIcons name="arrow-right" size={30} color={"gray"} paddingLeft= {60}  paddingTop= {10}></SimpleLineIcons>
       </TouchableOpacity>
     </View>
   );
@@ -158,7 +135,7 @@ const styles = StyleSheet.create({
   nameAcc: {
     fontSize: 22,
     color: "black",
-    fontStyle: "bold",
+    fontStyle: "normal",
     marginTop: 10,
     marginBottom: 5,
   },

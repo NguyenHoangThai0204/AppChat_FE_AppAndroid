@@ -3,17 +3,12 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableHighlight,
   TouchableOpacity,
   FlatList,
   Image,
 } from "react-native";
-import { Search } from "react-native-feather";
 import { AntDesign } from "@expo/vector-icons";
-import { MdOutlineVideoLibrary } from "react-icons/md";
-import { MdKeyboardArrowRight } from "react-icons/md";
 import { TextInput } from "react-native-gesture-handler";
-import { CiGrid41 } from "react-icons/ci";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export default function DiscoverScreen({ navigation }) {

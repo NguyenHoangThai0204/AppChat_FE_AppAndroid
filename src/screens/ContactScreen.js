@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, FlatList, Button } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-// import { faStar } from '@fortawesome/free-solid-svg-icons';
 import Friend from "./Friend.js";
 import Group from "./Group.js";
 import OA from "./OA.js";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 // tab ở trên
 // npm install @react-navigation/material-top-tabs react-native-tab-view
@@ -25,12 +21,12 @@ export default function ContactScreen() {
       tabBarOptions={{
         style: {
           // top:100,
-          padding: "10px", // Điều chỉnh giá trị padding tùy theo nhu cầu của bạn
-          borderTopLeftRadius: "10px", // Điều chỉnh giá trị tùy theo nhu cầu của bạn
-          borderTopRightRadius: "10px", // Điều chỉnh giá trị tùy theo nhu cầu của bạn
+          padding: 10, // Điều chỉnh giá trị padding tùy theo nhu cầu của bạn
+          borderTopLeftRadius: 10, // Điều chỉnh giá trị tùy theo nhu cầu của bạn
+          borderTopRightRadius: 10, // Điều chỉnh giá trị tùy theo nhu cầu của bạn
         },
         labelStyle: {
-          fontSize: "13px", // Điều chỉnh giá trị fontSize tùy theo nhu cầu của bạn
+          fontSize: 13, // Điều chỉnh giá trị fontSize tùy theo nhu cầu của bạn
         },
       }}
     >

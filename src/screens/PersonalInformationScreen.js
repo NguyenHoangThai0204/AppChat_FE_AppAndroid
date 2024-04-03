@@ -4,10 +4,13 @@ import { View, StyleSheet } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/UserSelector";
+import { Dimensions } from 'react-native';
+
 
 export default function PersonalInformationScreen({ navigation }) {
   const currentUser = useSelector(selectCurrentUser);
   const nameAcc = currentUser.name;
+
 
   // Định dạng ngày sinh 
   const formattedDateOfBirth = new Date(
@@ -78,8 +81,8 @@ export default function PersonalInformationScreen({ navigation }) {
       <View style={style.coverImage}></View>
       <View style={style.content}>
         <View style={style.avatarAcc}></View>
-        <p style={style.nameAcc}>{nameAcc}</p>
-        <p style={style.headerInformation}>Thông tin cá nhân</p>
+        <Text style={style.nameAcc}>{nameAcc}</Text>
+        <Text style={style.headerInformation}>Thông tin cá nhân</Text>
 
         <View style={style.userInfo}>
           <Text style={style.userInfoTitle}>Họ và tên:</Text>
@@ -185,11 +188,11 @@ const style = StyleSheet.create({
   avatarAcc: {
     width: 120,
     height: 120,
-    borderRadius: "50%",
+    borderRadius: 50,
     backgroundColor: "black",
     position: "absolute",
     left: "50%",
-    transform: "translate(-50%, -50%)",
+    transform: [{ translateX: -0.5 * Dimensions.get("window").width }, { translateY: -0.5 * Dimensions.get("window").width}],
   },
   nameAcc: {
     color: "black",
@@ -199,7 +202,7 @@ const style = StyleSheet.create({
     position: "absolute",
     left: "50%",
     top: "11%",
-    transform: "translate(-50%, -50%)",
+    transform: [{ translateX: -0.5 * Dimensions.get("window").width }, { translateY: -0.5 * Dimensions.get("window").width}],
   },
   headerInformation: {
     color: "black",

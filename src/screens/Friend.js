@@ -1,5 +1,4 @@
 import { View, Text, TextInput, FlatList ,Button, TouchableOpacity, StyleSheet} from 'react-native';
-import { createSheet } from 'react-native-web/dist/cjs/exports/StyleSheet/dom';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
