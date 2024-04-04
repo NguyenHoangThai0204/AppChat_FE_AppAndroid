@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
+  Alert,
   StyleSheet,
   Text,
   TextInput,
@@ -8,6 +9,11 @@ import {
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import CustomAlert from "../components/CustomAlert";
+
+//  import ve xac thuc
+import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
+import firebaseConfig from "../../config"
+import firebase from "firebase/compat/app";
 
 //  impot
 import { postApiNoneToken } from "../../api/Callapi";
@@ -24,6 +30,84 @@ export default function SignupScreen({ navigation }) {
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [textMessage, setTextMessage] = useState([]);
+
+
+  /// xác thực 
+  const [code,setCode] = useState("")
+  const [verificationId,setVerificationId]=useState(null)
+  const recaptchaVerifier = useRef(null)
+
+
+  // gửi mã
+  const sendVerification =()=>{
+      const phoneProvider = new firebase.auth.PhoneAuthProvider();
+      phoneProvider
+
+      // sửa phone chỗ này
+          .verifyPhoneNumber(phone,recaptchaVerifier.current)
+          .then(setVerificationId);
+          // setPhone("")
+       
+  }
+
+  // xác nhận mã
+  const confirmCode =()=>{
+      const credential = firebase.auth.PhoneAuthProvider.credential( 
+
+          verificationId,
+          code
+      );
+   
+      alert(credential)
+      firebase.auth().signInWithCredential(credential)
+      
+      .then(()=>{
+        // nhập mã xong thì kiểm tra trước khi tạo ac
+          
+          // setCode("")
+          createAccount();
+          
+      })
+      .catch((error)=>{
+          alert(error)
+      })
+      // Alert.alert(
+      //     "login succssesful"
+      // )
+     
+  }
+
+  // view nhap ma
+  // function inputCode(){
+  //   return(
+  //     <View>
+
+  //                 <Text style={{marginBottom:20,fontSize:18
+  //                   }}>
+  //                       enter the code sent to your phone
+
+  //                   </Text>
+
+  //                   <TextInput style={{height:50,width:"100%",borderColor:"black",borderWidth:1,marginBottom:30
+  //                   ,paddingHorizontal:10
+  //                   }} placeholder="enter code" value={code} onChangeText={setCode}/>
+
+  //                   <TouchableOpacity onPress={confirmCode} style={{
+  //                       backgroundColor:"#841584",
+  //                       padding:10,
+  //                       borderRadius:5,
+  //                       marginBottom:20,
+  //                       alignItems:"center"
+
+  //                   }}>
+  //                       <Text style={{color:"white",fontSize:22,fontWeight:"bold"}}>confim code</Text>
+
+  //                   </TouchableOpacity>
+  //     </View>
+      
+  //   )
+  // }
+  //////////////////////////////
 
   const handleDayChange = (itemValue) => {
     setDay(itemValue);
@@ -93,13 +177,13 @@ export default function SignupScreen({ navigation }) {
   // check signup
 
   function checkSignup() {
-    const regPhone = /^\d{10,}$/;
+    // const regPhone = /^\d{10,}$/;
     const regMail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     const regName = /^[a-zA-Z]+$/;
     const regPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
     checkEmail = regMail.test(email);
     checkNamein = regName.test(name);
-    checkPhone = regPhone.test(phone);
+    // checkPhone = regPhone.test(phone);
     checkPass = regPass.test(password);
     if (
       name === "" ||
@@ -118,8 +202,8 @@ export default function SignupScreen({ navigation }) {
       addMessage("Vui lòng chọn giới tính");
     } else if (!checkEmail) {
       addMessage("Email không hợp lệ");
-    } else if (!checkPhone) {
-      addMessage("Số điện thoại không hợp lệ phải là số và có ít nhất 10 số");
+    // } else if (!checkPhone) {
+    //   addMessage("Số điện thoại không hợp lệ phải là số và có ít nhất 10 số");
     } else if (!checkPass) {
       addMessage(
         "Mật khẩu không hợp lệ phải có ít nhất 8 ký tự, 1 chữ số, 1 chữ hoa, 1 ký tự đặc biệt"
@@ -131,13 +215,22 @@ export default function SignupScreen({ navigation }) {
       if (age < 18) {
         addMessage("Tuổi phải lớn hơn 18");
       } else {
-        createAccount();
+        // createAccount();
+        // OTP trước khi cho tạo acc
+        sendVerification();
       }
     }
   }
 
   return (
     <View style={styles.container}>
+
+      {/* khai bao xac thuc */}
+      <FirebaseRecaptchaVerifierModal 
+        ref={recaptchaVerifier}
+        firebaseConfig={firebaseConfig}
+        /> 
+      {/* ----------------- */}
       {textMessage.map((mess, index) => (
         <CustomAlert key={index} message={mess} />
       ))}
@@ -233,6 +326,12 @@ export default function SignupScreen({ navigation }) {
             style={[styles.input, { flex: 7 }]}
             placeholder="Nhập số điện thoại"
           />
+        
+
+
+
+
+          {/* /////////// */}
         </View>
       </View>
 
@@ -330,13 +429,37 @@ export default function SignupScreen({ navigation }) {
           />
         </View>
       </View>
-
+     
+            {/* check signup truoc khi cho gui ma */}
       <TouchableOpacity onPress={checkSignup} style={styles.next}>
+      {/* <TouchableOpacity onPress={sendVerification} style={styles.next}>  */}
         <View>
           <Text style={{ fontSize: 24, color: "white" }}>Đăng ký</Text>
         </View>
       </TouchableOpacity>
+{/* // them */}
+ <TextInput placeholder='comfirm code'
+            onChangeText={setCode}
+            keyboardType='number-pad'
+            style={styles.textInput}
+            />
+   
+    
+<TouchableOpacity style={styles.sendVerification} onPress={confirmCode}>
+                <Text style={styles.buttonText}> Comfirm  verification </Text>
+            </TouchableOpacity >
+{/* //// them khuc nhap ma */}
+
+
+
+
+
+
+     
+
+
     </View>
+    
   );
 }
 
@@ -354,7 +477,7 @@ const styles = StyleSheet.create({
     border: 0,
   },
   next: {
-    top: 90,
+    top: 30,
     width: "60%",
     borderWidth: 0,
     backgroundColor: "#0099FF",
@@ -379,4 +502,30 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     backgroundColor: "#0099FF",
   },
+  // them
+  textInput:{
+    padding:10,
+    marginTop:40,
+    
+    
+    fontSize:20,
+    borderBottomColor:"black"
+    ,
+    borderBottomWidth:2
+    ,
+    
+    textAlign:"center",
+    color:"black"
+  },
+  
+  sendVerification:{
+    padding:20,
+    backgroundColor:"#3498db",
+    borderRadius:10,
+    marginTop:10
+  },
+  buttonText:{
+    fontSize:18,
+    color:"white"
+  }
 });

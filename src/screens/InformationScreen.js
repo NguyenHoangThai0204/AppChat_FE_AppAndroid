@@ -1,93 +1,236 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { TextInput } from "react-native";
-import { Entypo } from '@expo/vector-icons';
-import { FontAwesome6 } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import { SimpleLineIcons } from '@expo/vector-icons';
-import { useSelector } from 'react-redux';
-import { selectCurrentUser } from '../../redux/user/UserSelector';
+import { Entypo } from "@expo/vector-icons";
+import { FontAwesome6 } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+import { SimpleLineIcons } from "@expo/vector-icons";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../redux/user/UserSelector";
+import { useState } from "react";
 
-export default function InformationScreen({navigation}) {
+export default function InformationScreen({ navigation }) {
   const handleSetting = () => {
     // Xử lý sự kiện khi người dùng nhấn vào icon Setting
     console.log("Pressed Setting");
   };
   const currentUser = useSelector(selectCurrentUser);
   const nameAcc = currentUser.name;
+  const [genderValue, setGenderValue] = useState(
+    currentUser.gender ? "Nam" : "Nữ"
+  );
+  // Định dạng ngày sinh
+  const formattedDateOfBirth = new Date(
+    currentUser.dateOfBirth
+  ).toLocaleDateString();
+  const [dateOfBirthValue, setDateOfBirthValue] =
+    useState(formattedDateOfBirth);
+  const [phoneValue, setPhoneValue] = useState(currentUser.phone);
+  const [emailValue, setEmailValue] = useState(currentUser.username);
+  // const email = currentUser.username;
+  // const avatar = currentUser.avatar;
+  // const phone = currentUser.phone;
+  // const dateOfBirth = currentUser.dateOfBirth;
+  // const gender = currentUser.gender;
+  // const formattedDateOfBirth = new Date(dateOfBirth).toLocaleDateString();
+
+  // const [editName, setEditName] = useState(false);
+  // const [editGender, setEditGender] = useState(false);
+  // const [editPhone, setEditPhone] = useState(false);
+  // const [editDateOfBirth, setEditDateOfBirth] = useState(false);
+  // const [editEmail, setEditEmail] = useState(false);
+  // const [editAvatar, setEditAvatar] = useState(false);
+
   return (
     <View style={styles.container}>
       {/* phần header */}
       <View style={styles.header}>
         <View style={styles.headerIconContainer}>
-        <MaterialIcons name="search" size={30} color={"white"} padding={"5px"} />
+          <MaterialIcons
+            name="search"
+            size={30}
+            color={"white"}
+            padding={"5px"}
+          />
           <TextInput style={styles.inputHeader} placeholder="Tìm kiếm" />
         </View>
-        <TouchableOpacity onPress={()=> navigation.navigate("FirstScreen")}>
+        <TouchableOpacity onPress={() => navigation.navigate("FirstScreen")}>
           <Entypo name="log-out" size={30} color="white" />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.touchInforAcc} onPress={() => navigation.navigate("PersonalInformationScreen")}>
+      <TouchableOpacity
+        style={styles.touchInforAcc}
+        onPress={() => navigation.navigate("PersonalInformationScreen")}
+      >
         <Image style={styles.avtImage}></Image>
         <View>
-            <Text style={styles.nameAcc}>{nameAcc}</Text>
-            <Text style={{ fontSize: 15, fontStyle: "italic", color: "grey" }}>
-              {" "}
-              Xem trang cá nhân
-            </Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.touchOther}>
-        <FontAwesome6 name="music" size={30} color={"white"} padding={"5px"}></FontAwesome6>
-        <View>
-          <Text style={styles.nameAcc}>Nhạc chờ Zaloo</Text>
-          <Text style={{ fontSize: 15, fontStyle: "normal", color: "grey" }}>
+          <Text style={styles.nameAcc}>{nameAcc}</Text>
+          <Text style={{ fontSize: 15, fontStyle: "italic", color: "grey" }}>
             {" "}
-            Đăng ký nhạc chờ, thể hiện cá tính
+            Chỉnh sửa trang cá nhân
           </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.touchOther}>
-        <Entypo name="wallet" size={30} color={"white"} padding={"5px"}></Entypo>
-        <View>
-          <Text style={styles.nameAcc}>Ví QR</Text>
-          <Text style={{ fontSize: 15, fontStyle: "normal", color: "grey" }}>
-            {" "}
-            Lưu trữ và xuất trình các mã QR quan trọng
-          </Text>
+
+
+      <View
+        style={{
+          padding: 10,
+          marginTop:20,
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          backgroundColor: "white",
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 15,
+            fontStyle: "normal",
+            color: "grey",
+            marginHorizontal: 20,
+          }}
+        >
+          {" "}
+          Họ và tên:
+        </Text>
+      </View>
+        <View style={styles.info}>
+          <FontAwesome6
+            name="music"
+            size={30}
+            color={"grey"}
+            padding={"8px"}
+          ></FontAwesome6>
+          <Text style={styles.nameAcc}>{nameAcc}</Text>
         </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.touchOther}>
-       <Entypo name="cloud" size={30} color={"white"} padding={"5px"}></Entypo>
-        <View>
-          <Text style={styles.nameAcc}>Cloud của tôi</Text>
-          <Text style={{ fontSize: 15, fontStyle: "normal", color: "grey" }}>
-            {" "}
-            Lưu trữ đám mây tiện ích
-          </Text>
+
+
+        <View
+        style={{
+          padding: 10,
+          marginTop:20,
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          backgroundColor: "white",
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 15,
+            fontStyle: "normal",
+            color: "grey",
+            marginHorizontal: 20,
+          }}
+        >
+          {" "}
+          Giới tính:
+        </Text>
+      </View>
+        <View style={styles.info}>
+          <FontAwesome6
+            name="music"
+            size={30}
+            color={"grey"}
+            padding={"8px"}
+          ></FontAwesome6>
+          <Text style={styles.nameAcc}>{genderValue}</Text>
         </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.touchOther}>
-        <MaterialCommunityIcons name="circle-slice-5" size={30} color={"white"} padding={"5px"}></MaterialCommunityIcons>
-        <View>
-          <Text style={styles.nameAcc}>Dung lượng và dữ liệu</Text>
-          <Text style={{ fontSize: 15, fontStyle: "normal", color: "grey" }}>
-            {" "}
-            Quản lý dữ liệu của bạn
-          </Text>
+
+        <View
+        style={{
+          padding: 10,
+          marginTop:20,
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          backgroundColor: "white",
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 15,
+            fontStyle: "normal",
+            color: "grey",
+            marginHorizontal: 20,
+          }}
+        >
+          {" "}
+          Ngày tháng năm sinh:
+        </Text>
+      </View>
+        <View style={styles.info}>
+          <FontAwesome6
+            name="music"
+            size={30}
+            color={"grey"}
+            padding={"8px"}
+          ></FontAwesome6>
+          <Text style={styles.nameAcc}>{dateOfBirthValue}</Text>
         </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.touchOther}>
-        <MaterialCommunityIcons name="security" size={30} color={"white"} padding={"5px"}></MaterialCommunityIcons>
-        <Text style={styles.nameAcc}>Tài khoản và bảo mật</Text>
-        <SimpleLineIcons name="arrow-right" size={30} color={"gray"} paddingLeft= {60}  paddingTop= {10}></SimpleLineIcons>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.touchOther}>
-        <MaterialIcons name="privacy-tip" size={30} color={"white"} padding={"5px"}></MaterialIcons>
-        <Text style={styles.nameAcc}>Quyền riêng tư</Text>
-        <SimpleLineIcons name="arrow-right" size={30} color={"gray"} paddingLeft= {60}  paddingTop= {10}></SimpleLineIcons>
-      </TouchableOpacity>
+
+        <View
+        style={{
+          padding: 10,
+          marginTop:20,
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          backgroundColor: "white",
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 15,
+            fontStyle: "normal",
+            color: "grey",
+            marginHorizontal: 20,
+          }}
+        >
+          {" "}
+          Số điện thoại:
+        </Text>
+      </View>
+        <View style={styles.info}>
+          <FontAwesome6
+            name="music"
+            size={30}
+            color={"grey"}
+            padding={"8px"}
+          ></FontAwesome6>
+          <Text style={styles.nameAcc}>{phoneValue}</Text>
+        </View>
+
+
+        <View
+        style={{
+          padding: 10,
+          marginTop:20,
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          backgroundColor: "white",
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 15,
+            fontStyle: "normal",
+            color: "grey",
+            marginHorizontal: 20,
+          }}
+        >
+          {" "}
+          Email:
+        </Text>
+      </View>
+        <View style={styles.info}>
+          <FontAwesome6
+            name="music"
+            size={30}
+            color={"grey"}
+            padding={"8px"}
+          ></FontAwesome6>
+          <Text style={styles.nameAcc}>{emailValue}</Text>
+        </View>
+      
     </View>
   );
 }
@@ -95,12 +238,9 @@ export default function InformationScreen({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "white",
   },
   header: {
-    top: 20,
-    height: 80,
-    padding: 10,
-    paddingBottom: 25,
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -140,6 +280,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: "black",
     fontStyle: "normal",
+    marginLeft: 30,
     marginTop: 10,
     marginBottom: 5,
   },
@@ -154,5 +295,16 @@ const styles = StyleSheet.create({
     width: 30,
     padding: 10,
     color: "rgb(0,145,255)",
+  },
+  info: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#D3E3FD",
+    borderRadius: 15,
+    borderWidth: 0,
+    borderColor: "white",
+    width:"90%",
+    marginLeft:"5%",
+    paddingLeft: 30,
   },
 });

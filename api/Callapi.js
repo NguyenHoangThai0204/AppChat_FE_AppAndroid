@@ -2,8 +2,8 @@ import axios from 'axios'
 
 
 var api = axios.create({
-    // baseURL:'http://localhost:3001/api/user'
-    baseURL:'http://192.168.1.13:3001/api/user'
+    baseURL:'http://localhost:3001/api/user'
+    // baseURL:'http://192.168.1.13:3001/api/user'
 })
 
 // export const getApiWithToken=(url)=>{
@@ -38,3 +38,4 @@ export const postApiNoneToken=(url,data)=>{
 export const getApiNoneToken=(url,data)=>{
     return api.get(url,data)
 }
+
