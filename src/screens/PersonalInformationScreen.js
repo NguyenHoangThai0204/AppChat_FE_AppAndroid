@@ -19,7 +19,6 @@ import { useState } from "react";
 import placeholder from "../../assets/user.png";
 import * as ImagePicker from "expo-image-picker";
 import { postApiNoneToken } from "../../api/Callapi";
-import  uploadBase64ImageToS3  from "../";
 
 const FormData = global.FormData;
 
@@ -67,9 +66,7 @@ export default function PersonalInformationScreen({ navigation }) {
       if (!result.canceled) {
         console.log("Image chọn là : " + result.assets[0].uri);
         alert(result.assets[0].uri);
-        // Sử dụng hàm để chuyển đổi base64 và tải hình ảnh lên S3
-        // const imageUrl = await uploadBase64ImageToS3(result.assets[0].uri);
-        // console.log("Uploaded image URL:", imageUrl);
+        await saveImage(result.assets[0].uri);
       }
     } catch (error) {
       console.log("Error picking image: ", error);
@@ -122,8 +119,6 @@ export default function PersonalInformationScreen({ navigation }) {
 
   const saveImage = async (url) => {
     try {
-      const fileExtension = url.split(".").pop();
-      console.log("fileExtension: ", fileExtension);
 
       // update display image
       setUri(url);
@@ -147,9 +142,9 @@ export default function PersonalInformationScreen({ navigation }) {
     try {
       const formData = new FormData();
       formData.append("file", {
-        uri: url,
-        type: "image/jpeg", // Adjust the type based on your requirements
-        name: "avatar.jpg",
+        uri: uri,
+        type: "image/png", // Adjust the type based on your requirements
+        name: "avatar.png",
       });
 
       const response = await postApiNoneToken("/uploadAvatar", formData);
