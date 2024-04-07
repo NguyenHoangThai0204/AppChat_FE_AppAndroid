@@ -21,7 +21,7 @@ import PersonalInformationScreen from "./src/screens/PersonalInformationScreen.j
 import LogoutScreen from "./src/screens/LogoutScreen.js";
 const Stack = createNativeStackNavigator();
 import { Provider } from 'react-redux'; // Import Provider từ react-redux
-import { store } from './redux/store'; // Import Redux store của bạn
+import store from './redux_stores/store'// Import store từ file store.js
 
 export default function App() {
   return (

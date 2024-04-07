@@ -13,21 +13,19 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../../redux/user/UserSelector";
-import { setCurrentUser } from "../../redux/user/UserActions";
 import { useState } from "react";
 import placeholder from "../../assets/user.png";
 import * as ImagePicker from "expo-image-picker";
 import { postApiNoneToken } from "../../api/Callapi";
 import { putApiNoneToken } from "../../api/Callapi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentUser } from "../../redux_stores/userSlide";
 
 const FormData = global.FormData;
 
 export default function PersonalInformationScreen({ navigation }) {
   const dispatch = useDispatch();
-  const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useSelector((state) => state.user.currentUser);
   const nameAcc = currentUser.name;
   const [genderValue, setGenderValue] = useState(
     currentUser.gender ? "Nam" : "Nữ"
@@ -200,7 +198,7 @@ export default function PersonalInformationScreen({ navigation }) {
           alert("Success updating information: " + response.status);
           console.log("response.data: ", response.data.data);
           dispatch(setCurrentUser(response.data.data));
-          navigation.navigate("InformationScreen");
+          navigation.navigate("HomeScreen");
         }
       } catch (error) {
         console.error("Error updating information: ", error);

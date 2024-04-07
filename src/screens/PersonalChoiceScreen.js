@@ -23,7 +23,7 @@ export default function PersonalChoiceScreen({ route, navigation }) {
           <TouchableOpacity
             onPress={() => navigation.navigate("ChatsScreen", { name: name })}
           >
-            <FontAwesome name="arrow-left" size={30} color="white" padding={"5px"} />
+            <AntDesign name="arrowleft" size={30} color="white" padding={5}/>
           </TouchableOpacity>
           <View>
             <p

@@ -11,8 +11,9 @@ import { AntDesign } from "@expo/vector-icons";
 import { postApiNoneToken } from "../../api/Callapi";
 // import use state
 import { useState, useEffect } from "react";
-import { setCurrentUser } from "../../redux/user/UserActions";
-import { useDispatch } from 'react-redux';
+// import { setCurrentUser } from "../../redux/user/UserActions";
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentUser } from "../../redux_stores/userSlide";
 import CustomAlert from "../components/CustomAlert";
 
 function LoginScreen({ navigation }) {
@@ -22,6 +23,7 @@ function LoginScreen({ navigation }) {
   const [pass, setPass] = useState("");
   const [fetchingToken, setFetchingToken] = useState(false);
   const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.user.currentUser);
   const [textMessage, setTextMessage] = useState([]);
 
   // Thêm thông báo vào mảng textMessage

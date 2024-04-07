@@ -6,8 +6,8 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
-import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../../redux/user/UserSelector";
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentUser } from "../../redux_stores/userSlide";
 import { useState } from "react";
 import placeholder from "../../assets/user.png";
 
@@ -17,7 +17,7 @@ export default function InformationScreen({ navigation }) {
     // Xử lý sự kiện khi người dùng nhấn vào icon Setting
     console.log("Pressed Setting");
   };
-  const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useSelector((state) => state.user.currentUser);
   const nameAcc = currentUser.name;
   const [genderValue, setGenderValue] = useState(
     currentUser.gender ? "Nam" : "Nữ"
