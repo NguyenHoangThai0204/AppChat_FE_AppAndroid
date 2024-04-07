@@ -9,6 +9,8 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/UserSelector";
 import { useState } from "react";
+import placeholder from "../../assets/user.png";
+
 
 export default function InformationScreen({ navigation }) {
   const handleSetting = () => {
@@ -28,19 +30,7 @@ export default function InformationScreen({ navigation }) {
     useState(formattedDateOfBirth);
   const [phoneValue, setPhoneValue] = useState(currentUser.phone);
   const [emailValue, setEmailValue] = useState(currentUser.username);
-  // const email = currentUser.username;
-  // const avatar = currentUser.avatar;
-  // const phone = currentUser.phone;
-  // const dateOfBirth = currentUser.dateOfBirth;
-  // const gender = currentUser.gender;
-  // const formattedDateOfBirth = new Date(dateOfBirth).toLocaleDateString();
-
-  // const [editName, setEditName] = useState(false);
-  // const [editGender, setEditGender] = useState(false);
-  // const [editPhone, setEditPhone] = useState(false);
-  // const [editDateOfBirth, setEditDateOfBirth] = useState(false);
-  // const [editEmail, setEditEmail] = useState(false);
-  // const [editAvatar, setEditAvatar] = useState(false);
+  const [uri, setUri] = useState(currentUser.avatar);
 
   return (
     <View style={styles.container}>
@@ -63,7 +53,7 @@ export default function InformationScreen({ navigation }) {
         style={styles.touchInforAcc}
         onPress={() => navigation.navigate("PersonalInformationScreen")}
       >
-        <Image style={styles.avtImage}></Image>
+        <Image source={uri ? { uri } : placeholder} style={styles.avtImage}></Image>
         <View>
           <Text style={styles.nameAcc}>{nameAcc}</Text>
           <Text style={{ fontSize: 15, fontStyle: "italic", color: "grey" }}>

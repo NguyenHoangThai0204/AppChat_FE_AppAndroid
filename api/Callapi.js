@@ -39,4 +39,6 @@ export const getApiNoneToken=(url,data)=>{
     return api.get(url,data)
 }
 
-
+export const putApiNoneToken=(url,data)=>{
+    return api.put(url,data)
+}

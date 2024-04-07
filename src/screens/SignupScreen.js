@@ -58,7 +58,7 @@ export default function SignupScreen({ navigation }) {
           code
       );
    
-      alert(credential)
+      // alert(credential)
       firebase.auth().signInWithCredential(credential)
       
       .then(()=>{
@@ -139,7 +139,6 @@ export default function SignupScreen({ navigation }) {
         name: name,
         username: email,
         gender: gender,
-        // dateOfBirth: dateOfBirth,
         dateOfBirth: selectedDate,
         phone: phone,
         password: password,
@@ -149,8 +148,6 @@ export default function SignupScreen({ navigation }) {
         addMessage("Đăng ký thất bại " + response.data.message);
         return;
       } else {
-        addMessage("Đăng ký thành công " + response.data.message);
-        addMessage("Tài khoản mới" + response.data.data.name + "đã được tạo");
         navigation.navigate("FirstScreen"); // chuyen ve
       }
     } catch (error) {
@@ -177,13 +174,13 @@ export default function SignupScreen({ navigation }) {
   // check signup
 
   function checkSignup() {
-    // const regPhone = /^\d{10,}$/;
+    const regPhone = /^\+84\d{9}$/;
     const regMail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-    const regName = /^[a-zA-Z]+$/;
+    const regName = /^[^\d`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]*$/;
     const regPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
     checkEmail = regMail.test(email);
     checkNamein = regName.test(name);
-    // checkPhone = regPhone.test(phone);
+    checkPhone = regPhone.test(phone);
     checkPass = regPass.test(password);
     if (
       name === "" ||
@@ -202,14 +199,16 @@ export default function SignupScreen({ navigation }) {
       addMessage("Vui lòng chọn giới tính");
     } else if (!checkEmail) {
       addMessage("Email không hợp lệ");
-    // } else if (!checkPhone) {
-    //   addMessage("Số điện thoại không hợp lệ phải là số và có ít nhất 10 số");
+    } else if (!checkPhone) {
+      addMessage("Số điện thoại không hợp lệ +84xxxxxxxxx");
     } else if (!checkPass) {
       addMessage(
         "Mật khẩu không hợp lệ phải có ít nhất 8 ký tự, 1 chữ số, 1 chữ hoa, 1 ký tự đặc biệt"
       );
     } else if (!checkNamein && !checkEmail && !checkPhone) {
       addMessage("Email hoặc tên hoặc sđt hoặc  không hợp lệ");
+    }else if (password !== confirm) {
+      addMessage("Mật khẩu không khớp");
     } else {
       const age = checkAge();
       if (age < 18) {

@@ -15,18 +15,18 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/UserSelector";
+import { setCurrentUser } from "../../redux/user/UserActions";
 import { useState } from "react";
 import placeholder from "../../assets/user.png";
 import * as ImagePicker from "expo-image-picker";
 import { postApiNoneToken } from "../../api/Callapi";
+import { putApiNoneToken } from "../../api/Callapi";
+import { useDispatch } from "react-redux";
 
 const FormData = global.FormData;
 
 export default function PersonalInformationScreen({ navigation }) {
-  const handleSetting = () => {
-    // Xử lý sự kiện khi người dùng nhấn vào icon Setting
-    console.log("Pressed Setting");
-  };
+  const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   const nameAcc = currentUser.name;
   const [genderValue, setGenderValue] = useState(
@@ -119,7 +119,6 @@ export default function PersonalInformationScreen({ navigation }) {
 
   const saveImage = async (url) => {
     try {
-
       // update display image
       setUri(url);
 
@@ -161,11 +160,62 @@ export default function PersonalInformationScreen({ navigation }) {
     }
   };
 
+  const convertDateFormat = (inputDate) => {
+    const [day, month, year] = inputDate.split("/");
+    const utcDate = new Date(Date.UTC(year, month - 1, day)); // month - 1 vì tháng trong JavaScript đếm từ 0
+    const isoDateString = utcDate.toISOString();
+    return isoDateString;
+  };
+
+  const updateInformation = async () => {
+    if (
+      nameValue !== currentUser.name ||
+      genderValue !== (currentUser.gender ? "Nam" : "Nữ") ||
+      dateOfBirthValue !== formattedDateOfBirth ||
+      phoneValue !== currentUser.phone ||
+      emailValue !== currentUser.username
+    ) {
+      const newGenderValue = genderValue === "Nam" ? true : false;
+      // Sử dụng hàm chuyển đổi định dạng ngày tháng năm
+      const standardDateOfBirthValue = convertDateFormat(dateOfBirthValue);
+
+      try {
+        console.log("currentUser._id: ", currentUser._id);
+        console.log("nameValue: ", nameValue);
+        console.log("genderValue: ", newGenderValue);
+        console.log("newDateOfBirthValue: ", standardDateOfBirthValue);
+        console.log("phoneValue: ", phoneValue);
+        console.log("emailValue: ", emailValue);
+        const userID = currentUser._id;
+        const response = await putApiNoneToken(`/updateUser/${userID}`, {
+          name: nameValue,
+          username: emailValue,
+          gender: newGenderValue,
+          dateOfBirth: standardDateOfBirthValue,
+          phone: phoneValue,
+        });
+        if (response.status === "ERR") {
+          alert("Error updating information: " + response.message);
+        } else {
+          alert("Success updating information: " + response.status);
+          console.log("response.data: ", response.data.data);
+          dispatch(setCurrentUser(response.data.data));
+          navigation.navigate("InformationScreen");
+        }
+      } catch (error) {
+        console.error("Error updating information: ", error);
+      }
+    } else {
+      alert("No changes to update");
+    }
+  };
+
   const handleSubmitChanges = () => {
     // Xử lý khi người dùng nhấn nút "Thay đổi"
     console.log("Submit Changes");
+
     // Thực hiện lưu thông tin đã chỉnh sửa
-    sendToBackend();
+    updateInformation();
   };
 
   return (
@@ -239,7 +289,7 @@ export default function PersonalInformationScreen({ navigation }) {
           style={styles.nameAcc}
           editable={true}
           value={nameValue}
-          onChangeText={setNameValue}
+          onChangeText={(text) => setNameValue(text)}
         ></TextInput>
       </View>
       <View
@@ -274,7 +324,7 @@ export default function PersonalInformationScreen({ navigation }) {
           style={styles.nameAcc}
           editable={true}
           value={genderValue}
-          onChangeText={setGenderValue}
+          onChangeText={(text) => setGenderValue(text)}
         ></TextInput>
       </View>
       <View
@@ -309,7 +359,7 @@ export default function PersonalInformationScreen({ navigation }) {
           style={styles.nameAcc}
           editable={true}
           value={dateOfBirthValue}
-          onChangeText={setDateOfBirthValue}
+          onChangeText={(text) => setDateOfBirthValue(text)}
         ></TextInput>
       </View>
       <View
@@ -344,7 +394,7 @@ export default function PersonalInformationScreen({ navigation }) {
           style={styles.nameAcc}
           editable={true}
           value={phoneValue}
-          onChangeText={setPhoneValue}
+          onChangeText={(text) => setPhoneValue(text)}
         ></TextInput>
       </View>
       <View
@@ -379,7 +429,7 @@ export default function PersonalInformationScreen({ navigation }) {
           style={styles.nameAcc}
           editable={true}
           value={emailValue}
-          onChangeText={setEmailValue}
+          onChangeText={(text) => setEmailValue(text)}
         ></TextInput>
       </View>
       <TouchableOpacity
