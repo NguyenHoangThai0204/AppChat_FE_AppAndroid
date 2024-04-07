@@ -7,26 +7,42 @@ import {
   StyleSheet,
   FlatList,
 } from "react-native";
-import { MaterialIcons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { useState } from "react";
-
-const users = [
-  { id: "1", name: "Người dùng 1", email: "user1@example.com" },
-  { id: "2", name: "Hồ Trọng Mến", email: "user2@example.com" },
-  { id: "3", name: "Nguyễn Hoàng Thái", email: "user1@example.com" },
-  { id: "4", name: "Lê Thị Ngọc Mai", email: "user2@example.com" },
-  { id: "5", name: "Nguyễn Văn Việt", email: "user1@example.com" },
-  { id: "6", name: "Nguyễn Văn Long", email: "user2@example.com" },
-  { id: "7", name: "Nguyễn Thị Thanh", email: "user3@gmail.com"},
-  
-];
+import { getApiNoneToken } from "../../api/Callapi.js";
 
 export default function MessageScreen({ props, navigation }) {
+  const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
+  const users = [
+    { id: "1", name: "Người dùng 1", email: "user1@example.com" },
+    { id: "2", name: "Hồ Trọng Mến", email: "user2@example.com" },
+    { id: "3", name: "Nguyễn Hoàng Thái", email: "user1@example.com" },
+    { id: "4", name: "Lê Thị Ngọc Mai", email: "user2@example.com" },
+    { id: "5", name: "Nguyễn Văn Việt", email: "user1@example.com" },
+    { id: "6", name: "Nguyễn Văn Long", email: "user2@example.com" },
+
+  ];
+  // tìm kiếm
+  const search = async () => {
+    const response = await getApiNoneToken("/getDetailsByPhone/" + phone, {
+      phone: phone,
+    });
+    // alert(response.data.data)
+    console.log(response.data.data);
+    alert(response.data.data.phone);
+    alert(response.data.data.name);
+    // alert(response.data.data.avatar)
+    setName(response.data.data.name);
+    return response.data.data.phone;
+  };
   // render người dùng
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => navigation.navigate("ChatsScreen",{name: item.name})}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("ChatsScreen", { name: item.name })}
+    >
       <View style={styles.userItem}>
         <View style={styles.avatar}></View>
         <View style={styles.inforUser}>
@@ -34,15 +50,23 @@ export default function MessageScreen({ props, navigation }) {
           <Text style={{ fontSize: 16 }}>{item.email}</Text>
         </View>
       </View>
-    </TouchableOpacity> 
+    </TouchableOpacity>
   );
 
   return (
     <View style={styles.container}>
       {/* phần header */}
       <View style={styles.header}>
-      <MaterialIcons name="search" size={30} color={"white"} padding={"5px"} />
+        <MaterialIcons
+          onPress={() => search()}
+          name="search"
+          size={30}
+          color={"white"}
+          padding={5}
+        />
         <TextInput
+          onChangeText={setPhone}
+          value={phone}
           style={styles.inputHeader}
           placeholder="Tìm kiếm"
         ></TextInput>
@@ -52,12 +76,51 @@ export default function MessageScreen({ props, navigation }) {
       {/* Phần content */}
       <View style={styles.content}>
         {/* danh sách người đang sử dụng */}
-        <FlatList
-          data={users}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+        {!phone ? (
+          <>
+            <FlatList
+              data={users}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id}
+              showsVerticalScrollIndicator={true}
+            />
+          </>
+        ) : (
+          <>
+            {/* <FlatList
+           data={search()}
+            renderItem={renderSearch}
+            keyExtractor={(item) => item.phone}
           showsVerticalScrollIndicator={true}
-        />
+           /> */}
+            {/* <TextInput value={search}/> */}
+            <View style={styles.userItem}>
+              <View style={styles.avatar}></View>
+              <View style={styles.inforUser}>
+                <Text style={{ fontSize: 18 }}>{phone}</Text>
+                <Text style={{ fontSize: 16 }}>{name}</Text>
+                <TouchableOpacity
+                  style={{
+                    borderColor: "blue",
+                    height: 40,
+                    borderWidth: 1,
+                    borderRadius: 10,
+                    marginLeft: 200,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <View>
+                    {" "}
+                    <Text style={{ fontSize: 18, color: "blue" }}>
+                      Kết bạn
+                    </Text>{" "}
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </>
+        )}
       </View>
     </View>
   );

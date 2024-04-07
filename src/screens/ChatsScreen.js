@@ -21,6 +21,7 @@ export default function ChatsScreen({ route, navigation }) {
       {/* Phần header */}
       <View style={styles.header}>
         <TouchableOpacity style={{ fontSize: 23, color: "white" }} onPress={() => navigation.navigate("HomeScreen")}>
+          <Text></Text>
           <AntDesign name="arrowleft" size={30} color="white" />
         </TouchableOpacity>
         <TouchableOpacity
@@ -33,10 +34,10 @@ export default function ChatsScreen({ route, navigation }) {
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={{ fontSize: 30, color: "white" }}>
-          <Entypo name="phone" size={23} color="white" />
+          <Entypo name="phone" size={30} color="white" />
         </TouchableOpacity>
         <TouchableOpacity style={{ fontSize: 30, color: "white" }}>
-          <Entypo name="video-camera" size={23} color="white" />
+          <Entypo name="video-camera" size={30} color="white" />
         </TouchableOpacity>
         {/* Phần menu cá nhân */}
         <TouchableOpacity
