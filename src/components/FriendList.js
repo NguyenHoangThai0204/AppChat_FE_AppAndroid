@@ -7,8 +7,14 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Feather, Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const FriendList = ({ friends }) => {
+  const navigation = useNavigation();
+
+  const handleChatPress = (phone) => {
+    navigation.navigate('ChatsScreen', { phone: phone});
+  };
   const renderItem = ({ item }) => (
     <TouchableOpacity style={styles.item}>
       <View style={styles.userItem}>
@@ -25,7 +31,9 @@ const FriendList = ({ friends }) => {
             padding={"10px"}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={{ fontSize: 30, marginLeft:20}}>
+        <TouchableOpacity style={{ fontSize: 30, marginLeft:20}}
+          onPress={() => handleChatPress(item.phone)}
+        >
           <Ionicons
             name="chatbubble-ellipses-outline"
             size={28}

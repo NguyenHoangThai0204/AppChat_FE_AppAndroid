@@ -12,10 +12,16 @@ import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useState } from "react";
 import { getApiNoneToken } from "../../api/Callapi.js";
+import { useSelector } from "react-redux";
+import { putApiNoneToken } from "../../api/Callapi.js";
 
 export default function MessageScreen({ props, navigation }) {
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
+  const [id, setId] = useState("");
+  const[text, setText] = useState("Kết bạn");
+  const currentUser = useSelector((state) => state.user.currentUser);
+
   const users = [
     { id: "1", name: "Người dùng 1", email: "user1@example.com" },
     { id: "2", name: "Hồ Trọng Mến", email: "user2@example.com" },
@@ -25,6 +31,32 @@ export default function MessageScreen({ props, navigation }) {
     { id: "6", name: "Nguyễn Văn Long", email: "user2@example.com" },
 
   ];
+  const addInvite=async()=>{
+
+
+    // thêm loi moi vao ds cua ho
+    const response1 = await putApiNoneToken("/addInvite/"+id, {
+      id:currentUser._id,
+      name:currentUser.name,
+     phone:currentUser.phone
+    });
+    console.log(id)
+    console.log(name)
+    console.log(phone)
+    
+  // ban da gui loi moi cho nhung ai
+  const response2 = await putApiNoneToken("/addListFriend/" + currentUser._id, {
+    id: id,
+    name: name,
+    phone: phone
+  });
+  
+    // setText("Đã gửi lời mời")
+    setText("đã gửi lời mời")
+    alert("thêm bạn thành công")
+    
+  }
+  
   // tìm kiếm
   const search = async () => {
     const response = await getApiNoneToken("/getDetailsByPhone/" + phone, {
@@ -36,6 +68,7 @@ export default function MessageScreen({ props, navigation }) {
     alert(response.data.data.name);
     // alert(response.data.data.avatar)
     setName(response.data.data.name);
+    setId(response.data.data._id)
     return response.data.data.phone;
   };
   // render người dùng
@@ -100,6 +133,7 @@ export default function MessageScreen({ props, navigation }) {
                 <Text style={{ fontSize: 18 }}>{phone}</Text>
                 <Text style={{ fontSize: 16 }}>{name}</Text>
                 <TouchableOpacity
+                  onPress={()=>addInvite(id,name,phone)}
                   style={{
                     borderColor: "blue",
                     height: 40,
@@ -113,7 +147,7 @@ export default function MessageScreen({ props, navigation }) {
                   <View>
                     {" "}
                     <Text style={{ fontSize: 18, color: "blue" }}>
-                      Kết bạn
+                      {text}
                     </Text>{" "}
                   </View>
                 </TouchableOpacity>

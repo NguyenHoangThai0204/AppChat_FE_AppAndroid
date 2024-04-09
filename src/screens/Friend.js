@@ -15,8 +15,10 @@ import { getApiNoneToken } from "../../api/Callapi.js";
 import { useSelector, useDispatch } from "react-redux";
 import { addFriend } from "../../redux_stores/friendSlide";
 import { useEffect } from "react";
+// import { useNavigation } from "@react-navigation/native";
 
-function Friend() {
+function Friend({ navigation }) {
+  // const navigation = useNavigation();
   const currentUser = useSelector((state) => state.user.currentUser);
   const id = currentUser._id;
   console.log("id", id);
@@ -27,21 +29,26 @@ function Friend() {
   useEffect(() => {
     const fetchFriends = async () => {
       try {
-        const response = await getApiNoneToken(`/getAllFriend/${id}`,{
-            _id: id,
-        }) // Gọi hàm getAllFriend từ backend
+        const response = await getApiNoneToken(`/getAllFriend/${id}`, {
+          _id: id,
+        }); // Gọi hàm getAllFriend từ backend
         const friendList = response.data.data;
-        friendList.forEach(friend => {
+        friendList.forEach((friend) => {
           dispatch(addFriend(friend)); // Dispatch action để thêm bạn bè vào Redux Store
         });
       } catch (error) {
-        console.error('Error fetching friends:', error);
+        console.error("Error fetching friends:", error);
       }
     };
 
     fetchFriends(); // Gọi hàm fetchFriends khi component mount
   }, [dispatch]);
 
+ 
+    const navigateToInvite = () => {
+      navigation.navigate("ListInvite");
+    };
+  
   // const friends = [
   //     { id: 1, name: 'John Doe', phone: '123456789' },
   //     { id: 2, name: 'Jane Smith', phone: '987654321' },
@@ -101,7 +108,7 @@ function Friend() {
       </View>
 
       <View style={{ flexDirection: "column" }}>
-        <TouchableOpacity style={styles.listadd}>
+        <TouchableOpacity onPress={()=>{navigation.navigate('ListInvite')}} style={styles.listadd}>
           <View>
             <Text style={{ fontSize: 20, paddingLeft: 30 }}>
               Lời mời kết bạn

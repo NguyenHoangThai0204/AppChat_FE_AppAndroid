@@ -22,6 +22,7 @@ import LogoutScreen from "./src/screens/LogoutScreen.js";
 const Stack = createNativeStackNavigator();
 import { Provider } from 'react-redux'; // Import Provider từ react-redux
 import store from './redux_stores/store'// Import store từ file store.js
+import ListInvite from "./src/screens/ListInvite.js";
 
 export default function App() {
   return (
@@ -102,11 +103,10 @@ export default function App() {
           name="PersonalInformationScreen"
           component={PersonalInformationScreen}
         />
-        {/* <Stack.Screen
-          options={{ headerShown: false }}
-          name="LogoutScreen"
-          component={LogoutScreen}
-        /> */}
+        <Stack.Screen
+          name="ListInvite"
+          component={ListInvite}
+        />
       </Stack.Navigator>
     </NavigationContainer>
     </Provider>
