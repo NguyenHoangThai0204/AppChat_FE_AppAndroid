@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentUser } from "../../redux_stores/userSlide";
 import { useState } from "react";
 import placeholder from "../../assets/user.png";
+import { postApiNoneToken } from "../../api/Callapi";
+
 
 
 export default function InformationScreen({ navigation }) {
@@ -31,6 +33,22 @@ export default function InformationScreen({ navigation }) {
   const [phoneValue, setPhoneValue] = useState(currentUser.phone);
   const [emailValue, setEmailValue] = useState(currentUser.username);
   const [uri, setUri] = useState(currentUser.avatar);
+  const dispatch = useDispatch();
+
+  const onPressLogout = () => {
+    const logout = async () => {
+      try {
+        const response = await postApiNoneToken("/logout");
+        console.log("Logout response: ", response.data);
+        if (response.data.status == "OK") {
+          navigation.navigate("FirstScreen");
+        }
+      } catch (error) {
+        console.error("Error logging out: ", error);
+      }
+    }
+    logout();
+  }
 
   return (
     <View style={styles.container}>
@@ -45,7 +63,8 @@ export default function InformationScreen({ navigation }) {
           />
           <TextInput style={styles.inputHeader} placeholder="Tìm kiếm" />
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("FirstScreen")}>
+        <TouchableOpacity onPress={onPressLogout}>
+          <Text></Text>
           <Entypo name="log-out" size={30} color="white" />
         </TouchableOpacity>
       </View>

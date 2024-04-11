@@ -51,6 +51,7 @@ function LoginScreen({ navigation }) {
           addMessage(response.data.userLogin.name + " đã đăng nhập thành công");
           //lấy thông tin người dùng và dispatch action để cập nhật trạng thái
           const user = response.data.userLogin;
+          console.log("response Login: ", response);
           dispatch(setCurrentUser(user));
           navigation.navigate("HomeScreen");
         } else {

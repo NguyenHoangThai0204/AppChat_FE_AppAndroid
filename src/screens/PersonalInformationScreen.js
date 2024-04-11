@@ -20,6 +20,9 @@ import { postApiNoneToken } from "../../api/Callapi";
 import { putApiNoneToken } from "../../api/Callapi";
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentUser } from "../../redux_stores/userSlide";
+import { setFriends } from "../../redux_stores/friendSlide";
+//
+
 
 const FormData = global.FormData;
 
@@ -42,6 +45,18 @@ export default function PersonalInformationScreen({ navigation }) {
   const [uri, setUri] = useState(currentUser.avatar);
   const [aviOnly, setAviOnly] = useState(false);
   const [image, setImage] = useState(null);
+  
+  // log out
+  const friends = useSelector((state) => state.friends);
+  const logOut = () => {
+    
+    navigation.navigate("FirstScreen");
+    dispatch(setFriends(null));
+    
+    
+
+  }
+
 
   const onPress = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -229,7 +244,7 @@ export default function PersonalInformationScreen({ navigation }) {
             Chỉnh sửa thông tin cá nhân{" "}
           </Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("FirstScreen")}>
+        <TouchableOpacity onPress={() => logOut()}>
           <Entypo name="log-out" size={30} color="white" />
         </TouchableOpacity>
       </View>

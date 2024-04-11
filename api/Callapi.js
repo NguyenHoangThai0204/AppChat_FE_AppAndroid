@@ -2,8 +2,14 @@ import axios from 'axios'
 
 
 var api = axios.create({
-    baseURL:'http://localhost:3001/api/user'
+    baseURL:'http://localhost:3001/api/user',
+    // withCredentials: true 
     // baseURL:'http://192.168.1.13:3001/api/user'
+})
+
+var apiMessage = axios.create({
+    baseURL:'http://localhost:3001/api/messages'
+    // baseURL:'http://
 })
 
 // export const getApiWithToken=(url)=>{
@@ -41,4 +47,12 @@ export const getApiNoneToken=(url,data)=>{
 
 export const putApiNoneToken=(url,data)=>{
     return api.put(url,data)
+}
+
+export const getApiMessageNoneToken=(url,data)=>{
+    return apiMessage.get(url,data)
+}
+
+export const postApiMessageNoneToken=(url,data)=>{
+    return apiMessage.post(url,data)
 }

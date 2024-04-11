@@ -18,7 +18,6 @@ import DiscoverApp from "./src/screens/DiscoverApp.js";
 import InformationScreen from "./src/screens/InformationScreen.js";
 import PersonalChoiceScreen from "./src/screens/PersonalChoiceScreen.js";
 import PersonalInformationScreen from "./src/screens/PersonalInformationScreen.js";
-import LogoutScreen from "./src/screens/LogoutScreen.js";
 const Stack = createNativeStackNavigator();
 import { Provider } from 'react-redux'; // Import Provider từ react-redux
 import store from './redux_stores/store'// Import store từ file store.js

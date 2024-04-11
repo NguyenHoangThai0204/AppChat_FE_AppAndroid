@@ -9,7 +9,17 @@ import {
 } from "react-native";
 import { AntDesign, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { getApiNoneToken } from "../../api/Callapi.js";
-import { useEffect } from "react";
+import { getApiMessageNoneToken } from "../../api/Callapi.js";
+import { postApiMessageNoneToken } from "../../api/Callapi.js";
+import { useEffect, useCallback } from "react";
+import { useSelector } from "react-redux";
+
+import { useDispatch } from "react-redux";
+import { addMessage } from "../../redux_stores/messageSlide"; // Import thêm action addTime ở messageSlide
+// import { addTime } from "../../redux_stores/timeSlide"; // Import thêm action addTime ở messageSlide
+import io from "socket.io-client";
+
+import ChatItem from "../components/ChatItem";
 
 export default function ChatsScreen({ route, navigation }) {
   const { phone } = route.params;
@@ -17,9 +27,58 @@ export default function ChatsScreen({ route, navigation }) {
   const [listData, setListData] = useState([]);
   const flatListRef = useRef(null);
   const [name, setName] = useState("");
+  const currentUser = useSelector((state) => state.user.currentUser);
+
+  const messages = useSelector((state) => state.messages.messages);
+  // const times = useSelector((state) => state.times.times);
+
+  const dispatch = useDispatch();
+  const [newReceiverId, setNewReceiverId] = useState("");
+
+  // test thu
+  
+  
+  // const [currentTime, setCurrentTime] = useState(new Date());
+
+
+  // useEffect(() => {
+    
+    
+  // }, [currentTime]);
+ 
+  
+  useEffect(() => {
+    const socket = io("http://localhost:3001")
+  
+    socket.on("connect", () => {
+      console.log("Connected to server");
+    });
+  
+    socket.on("disconnect", () => {
+      console.log("Disconnected from server");
+    });
+  
+    socket.on("newMessage", (message) => {
+      console.log("newMessage: ", message);
+      setListData([...listData, message]);
+      flatListRef.current.scrollToEnd();
+    });
+  
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+  
+  
 
   useEffect(() => {
     const fetchReceiverUser = async () => {
+      // const interval = setInterval(() => {
+      //   setCurrentTime(new Date());
+      // }, 5000);
+      // console.log(currentTime.getTime());
+        // return () => clearInterval(interval);
+     
       try {
         const response = await getApiNoneToken(`/getDetailsByPhone/${phone}`, {
           phone: phone,
@@ -28,6 +87,26 @@ export default function ChatsScreen({ route, navigation }) {
         const receiverData = response.data.data;
         if (receiverData) {
           setName(receiverData.name);
+          const senderId = currentUser._id;
+          console.log("senderId: ", senderId);
+          console.log("receiverData: ", receiverData);
+          const receiverId = receiverData._id;
+          setNewReceiverId(receiverId);
+          console.log("receiverId: ", receiverId);
+          console.log("NewReceiverId: ", newReceiverId);
+          const messagesResponse = await getApiMessageNoneToken(
+            "/getMessages/" + receiverId + "?senderId=" + senderId
+          );
+          console.log("messages: ", messagesResponse.data);
+          messagesResponse.data.forEach((message) => {
+            dispatch(addMessage(message));
+          });
+          // messagesResponse.data.forEach((createdAt) => {
+          //   dispatch(addTime(createdAt));
+          // });
+          // console.log("createdAt: ", times);
+          setListData(messagesResponse.data);
+          
         } else {
           console.error("No data received for receiver user.");
         }
@@ -37,13 +116,41 @@ export default function ChatsScreen({ route, navigation }) {
     };
 
     fetchReceiverUser();
-  }, [phone]);
+  
+  // }, [phone, currentUser._id]);currentTime
+  // setCurrentTime(new Date());
+}, [dispatch, phone, currentUser._id, newReceiverId]);
+  
+useEffect(() => {
+  console.log("Updated messages:", messages);
+}, [messages]);
 
-  const handleSend = () => {
+
+  useEffect(() => {
+    flatListRef.current.scrollToEnd();
+  }, [listData]);
+
+
+  const handleSend = async (newReceiverId, currentUserId) => {
     if (inputText.trim() !== "") {
-      setListData([...listData, inputText]);
-      setInputText("");
-      flatListRef.current.scrollToEnd();
+      const responseSendMess = postApiMessageNoneToken(
+        "/sendMessage/" + newReceiverId,
+        {
+          message: inputText,
+          userId: currentUserId,
+        }
+      );
+
+      const newMessage = (await responseSendMess.then()).data;
+        
+      console.log("responseSendMess: ", newMessage);
+      if(newMessage!=null){
+        console.log("newMessage: ", newMessage);
+        setListData([...listData, newMessage]);
+        flatListRef.current.scrollToEnd();
+        setInputText("");
+      }
+      
     }
   };
 
@@ -96,9 +203,18 @@ export default function ChatsScreen({ route, navigation }) {
           ref={flatListRef}
           data={listData}
           renderItem={({ item }) => (
-            <View style={{flex:1, margin:10, alignContent:"space-between"}}>
-              <Text style={styles.itemText}>{item}</Text>
-            </View>
+            // <View
+            //   style={{ flex: 1, margin: 10, alignContent: "space-between" }}
+            // >
+            //   <Text style={styles.itemText}>{item.message}</Text>
+            // </View>
+            <ChatItem
+              currentUserId={currentUser._id}
+              senderId={item.senderId}
+              receiverId={item.receiverId}
+              message={item.message}  
+              createdAt={item.createdAt}
+            />
           )}
           showsVerticalScrollIndicator={true}
           onContentSizeChange={() =>
@@ -128,7 +244,7 @@ export default function ChatsScreen({ route, navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={{ fontSize: 30, color: "white" }}
-          onPress={handleSend}
+          onPress={()=>handleSend(newReceiverId, currentUser._id)}
         >
           <Entypo name="direction" size={23} color="white" />
         </TouchableOpacity>
@@ -154,7 +270,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  itemText: { 
+  itemText: {
     maxWidth: "99%", // Đặt chiều rộng tối đa là 100%
     width: "max-content", // Đặt chiều rộng là tối đa của nội dung
     padding: 10,

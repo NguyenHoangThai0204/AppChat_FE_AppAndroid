@@ -13,7 +13,7 @@ import { AntDesign } from "@expo/vector-icons";
 import FriendList from "../components/FriendList";
 import { getApiNoneToken } from "../../api/Callapi.js";
 import { useSelector, useDispatch } from "react-redux";
-import { addFriend } from "../../redux_stores/friendSlide";
+import { addFriend, setFriends } from "../../redux_stores/friendSlide";
 import { useEffect } from "react";
 // import { useNavigation } from "@react-navigation/native";
 
@@ -33,8 +33,14 @@ function Friend({ navigation }) {
           _id: id,
         }); // Gọi hàm getAllFriend từ backend
         const friendList = response.data.data;
+        setFriends(null); // Xóa tất cả bạn bè trong Redux Store
+        console.log("friend", friends);
         friendList.forEach((friend) => {
+          // let i = friendList.length;
+         
+          // console.log("friend",addFriend(friend) );
           dispatch(addFriend(friend)); // Dispatch action để thêm bạn bè vào Redux Store
+          console.log("friend", friends);
         });
       } catch (error) {
         console.error("Error fetching friends:", error);
@@ -42,7 +48,8 @@ function Friend({ navigation }) {
     };
 
     fetchFriends(); // Gọi hàm fetchFriends khi component mount
-  }, [dispatch]);
+  // }, [dispatch]);
+}, []);
 
  
     const navigateToInvite = () => {
